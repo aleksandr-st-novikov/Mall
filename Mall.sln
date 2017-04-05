@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mall", "Mall\Mall.csproj", "{17AEE23B-C02D-46A4-A59D-2D934D4E47B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67C061FD-C54D-4858-8732-6982B0236195} = {67C061FD-C54D-4858-8732-6982B0236195}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{67C061FD-C54D-4858-8732-6982B0236195}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17AEE23B-C02D-46A4-A59D-2D934D4E47B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AEE23B-C02D-46A4-A59D-2D934D4E47B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AEE23B-C02D-46A4-A59D-2D934D4E47B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AEE23B-C02D-46A4-A59D-2D934D4E47B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C061FD-C54D-4858-8732-6982B0236195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C061FD-C54D-4858-8732-6982B0236195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C061FD-C54D-4858-8732-6982B0236195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C061FD-C54D-4858-8732-6982B0236195}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
