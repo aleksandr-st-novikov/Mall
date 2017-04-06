@@ -53,8 +53,10 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="EFContext\ApplicationEFContext.cs" />
+    <Compile Include="EFContext\SettingDocEFContext.cs" />
     <Compile Include="EFContext\TemplateEFContext.cs" />
     <Compile Include="Entities\MallDBContext.cs" />
+    <Compile Include="Entities\SettingDoc.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Entities\TemplateTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

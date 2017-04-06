@@ -47,24 +47,5 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private async Task SaveDataAsync(Template template)
-        {
-            //сохраняем шапку
-            //using (TemplateEFContext context = new TemplateEFContext())
-            //{
-            //    await context.AddTemplateAsync(template);
-            //}
-
-            //foreach (var d in MallDBContext.DocSpecs.Local)
-            //{
-            //    d.docid = IdDoc;
-            //}
-            //foreach (var d in dbContextF.DocSpecs.Local)
-            //{
-            //    d.docid = IdDoc;
-            //}
-            //dbContextD.SaveChanges();
-            //сохраняем табличную часть
-        }
     }
 }

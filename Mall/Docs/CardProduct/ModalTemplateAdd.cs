@@ -11,12 +11,13 @@ using DevExpress.XtraEditors;
 using System.Data.Entity;
 using DAL.EFContext;
 using DAL.Entities;
+using System.Data.OleDb;
 
 namespace Mall.Docs.CardProduct
 {
     public partial class ModalTemplateAdd : DevExpress.XtraEditors.XtraForm
     {
-        private DAL.Entities.MallDBContext dbContextSpec = new DAL.Entities.MallDBContext();
+        private TemplateEFContext templateContext = null;
         public int templateId;
 
         public ModalTemplateAdd()
@@ -35,29 +36,98 @@ namespace Mall.Docs.CardProduct
             view.SetRowCellValue(e.RowHandle, view.Columns["TemplateId"], int.Parse(textEdit2.Text));
         }
 
-        private void ModalTemplateAdd_Load(object sender, EventArgs e)
+        private async void ModalTemplateAdd_Load(object sender, EventArgs e)
         {
-            dbContextSpec.TemplateTable.Where(t => t.TemplateId == templateId).Load();
-            gridControl1.DataSource = dbContextSpec.TemplateTable.Local.ToBindingList();
+            templateContext = new TemplateEFContext();
+            templateContext.context.TemplateTable.Where(t => t.TemplateId == templateId).Load();
+            gridControl1.DataSource = templateContext.context.TemplateTable.Local.ToBindingList();
+
+            DataTable dt = GetFileFields();
+            List<string> comboData = new List<string>();
+            foreach (DataColumn column in dt.Columns)
+            {
+                comboData.Add(column.ColumnName);
+            }
+            repositoryItemComboBox1.Items.AddRange(comboData);
+
+            List<SettingDoc> lookupData = await templateContext.context.SettingDoc.Where(s => s.IsActive == true && !String.IsNullOrEmpty(s.Descr)).ToListAsync();
+            settingDocBindingSource.DataSource = lookupData;
         }
 
         private async void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            using (TemplateEFContext context = new TemplateEFContext())
+            using (var dbContextTransaction = templateContext.context.Database.BeginTransaction())
             {
-                Template template = new Template()
+                try
                 {
-                    Name = textEdit1.Text,
-                    Commentary = textEdit3.Text
-                };
-                templateId = await context.AddTemplateAsync(template);
-            }
+                    Template template = new Template()
+                    {
+                        Name = textEdit1.Text,
+                        Commentary = textEdit3.Text
+                    };
+                    templateId = await templateContext.AddTemplateAsync(template);
 
-            foreach (var d in dbContextSpec.TemplateTable.Local)
-            {
-                d.TemplateId = templateId;
+                    foreach (var d in templateContext.context.TemplateTable.Local)
+                    {
+                        d.TemplateId = templateId;
+                    }
+                    await templateContext.context.SaveChangesAsync();
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                }
             }
-            await dbContextSpec.SaveChangesAsync();
+        }
+
+        private DataTable GetFileFields()
+        {
+            try
+            {
+                // Строка подключения
+                string file = @"e:\VS\Mall\Data\Книга1.xls";
+                string ConnectionString = "";
+                if (System.IO.Path.GetExtension(file).ToUpper() == ".XLS")
+                {
+                    ConnectionString = String.Format(
+                        "Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=\"Excel 8.0;HDR=Yes\";Data Source={0}", file);
+                }
+                //пока не работает
+                else if (System.IO.Path.GetExtension(file).ToUpper() == ".XLSX")
+                {
+                    ConnectionString = String.Format(
+                        "Provider=Microsoft.ACE.OLEDB.12.0;Extended Properties =\"Excel 12.0 Xml;HDR=YES\";Data Source={0}", file);
+                }
+
+                // Открываем соединение
+                DataSet ds = new DataSet("EXCEL");
+                OleDbConnection cn = new OleDbConnection(ConnectionString);
+                cn.Open();
+
+                DataTable schemaTable =
+                        cn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
+                                new object[] { null, null, null, "TABLE" });
+
+                // Берем название первого листа
+                string sheet1 = (string)schemaTable.Rows[0].ItemArray[2];
+                // Выбираем все данные с листа
+                string select = String.Format("SELECT * FROM [{0}]", sheet1);
+                OleDbDataAdapter ad = new OleDbDataAdapter(select, cn);
+                ad.Fill(ds);
+                DataTable tb = ds.Tables[0];
+                return tb;
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        private void buttonEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
         }
     }
 }

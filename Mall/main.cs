@@ -65,5 +65,21 @@ namespace Mall
                 newMDIChild.Show();
             }
         }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult result;
+            using (var modalSettingDoc = new ModalSettingDoc())
+            {
+                result = modalSettingDoc.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
     }
 }

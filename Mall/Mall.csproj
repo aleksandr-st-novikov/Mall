@@ -32,6 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v16.1" />
     <Reference Include="DevExpress.Data.v16.1" />
@@ -77,6 +85,12 @@
     <Compile Include="Docs\CardProduct\JournalTemplate.Designer.cs">
       <DependentUpon>JournalTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docs\CardProduct\ModalSettingDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docs\CardProduct\ModalSettingDoc.Designer.cs">
+      <DependentUpon>ModalSettingDoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docs\CardProduct\ModalTemplateAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docs\CardProduct\JournalTemplate.resx">
       <DependentUpon>JournalTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docs\CardProduct\ModalSettingDoc.resx">
+      <DependentUpon>ModalSettingDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docs\CardProduct\ModalTemplateAdd.resx">
       <DependentUpon>ModalTemplateAdd.cs</DependentUpon>
@@ -118,6 +135,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.TemplateTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

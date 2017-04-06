@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="shipment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="documentName" type="xs:string" minOccurs="0" />
+        <xs:element name="shipmentNumber" type="xs:string" minOccurs="0" />
+        <xs:element name="shippingDate" type="xs:string" minOccurs="0" />
+        <xs:element name="transportModeId" type="xs:string" minOccurs="0" />
+        <xs:element name="brokerId" type="xs:string" minOccurs="0" />
+        <xs:element name="senderDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="senderFiscalCode" type="xs:string" minOccurs="0" />
+        <xs:element name="hubDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="voyage" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="eta" type="xs:string" minOccurs="0" />
+              <xs:element name="sapVoyageNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="lmdVoyageNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="invoicingDesc" type="xs:string" minOccurs="0" />
+              <xs:element name="doc_header" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="invoiceSerial" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceNumber" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceDate" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientId" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientFiscalCode" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientName" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientName2" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientAddress" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientAddress2" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientZipCode" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientTown" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientCountry" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientCountryId" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientPhoneNumber" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceRecipientFax" type="xs:string" minOccurs="0" />
+                    <xs:element name="valueId" type="xs:string" minOccurs="0" />
+                    <xs:element name="incotermsId" type="xs:string" minOccurs="0" />
+                    <xs:element name="unconditionalDiscountTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="conditionalDiscountTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="freightTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="breakUpOfCosts" type="xs:string" minOccurs="0" />
+                    <xs:element name="dutyTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="taxTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="goodsTotalAmount" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceGrossWeight" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceNetWeight" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceBoxesQty" type="xs:string" minOccurs="0" />
+                    <xs:element name="paymentTermsDesc" type="xs:string" minOccurs="0" />
+                    <xs:element name="invoiceEffectDate" type="xs:string" minOccurs="0" />
+                    <xs:element name="financialDocumentReference" type="xs:string" minOccurs="0" />
+                    <xs:element name="delivery_header" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="customerId" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerFiscalCode" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerName" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerName2" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerAddress" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerAddress2" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerZipCode" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerTown" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerCountry" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerCountryId" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerPhoneNumber" type="xs:string" minOccurs="0" />
+                          <xs:element name="customerFax" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointId" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointDesc" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointDesc2" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointCodeAddress" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointCodeAddress2" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointCodeZipCode" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointTown" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointCountry" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointCountryId" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointShopCode" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointPhoneNumber" type="xs:string" minOccurs="0" />
+                          <xs:element name="deliveryPointFax" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopId" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopDesc" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopAddress" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopAddress2" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopZipCode" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopTown" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopCountry" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopCountryId" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopPhonNumber" type="xs:string" minOccurs="0" />
+                          <xs:element name="shopFax" type="xs:string" minOccurs="0" />
+                          <xs:element name="boxQty" type="xs:string" minOccurs="0" />
+                          <xs:element name="grossWeight" type="xs:string" minOccurs="0" />
+                          <xs:element name="shippingNoteSerial" type="xs:string" minOccurs="0" />
+                          <xs:element name="shippingNoteNumber" type="xs:string" minOccurs="0" />
+                          <xs:element name="shippingNoteDate" type="xs:string" minOccurs="0" />
+                          <xs:element name="brandDesc" type="xs:string" minOccurs="0" />
+                          <xs:element name="box" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="boxId" type="xs:string" minOccurs="0" />
+                                <xs:element name="boxGrossWeight" type="xs:string" minOccurs="0" />
+                                <xs:element name="boxVolume" type="xs:string" minOccurs="0" />
+                                <xs:element name="delivery_detail" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="styleId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="styleDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="seasonYearId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="seasonId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="themeList" type="xs:string" minOccurs="0" />
+                                      <xs:element name="fromToSizeId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="unitOfMeasurementId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="piecesQty" type="xs:string" minOccurs="0" />
+                                      <xs:element name="unitInvoicingPrice" type="xs:string" minOccurs="0" />
+                                      <xs:element name="styleCompositionDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="extendedStyleCompositionDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="extendedStyleDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="madeInId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="notPreferentialId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="netWeight" type="xs:string" minOccurs="0" />
+                                      <xs:element name="processingId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="processingDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="genderId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="genderDesc" type="xs:string" minOccurs="0" />
+                                      <xs:element name="customsCodeExport" type="xs:string" minOccurs="0" />
+                                      <xs:element name="productId" type="xs:string" minOccurs="0" />
+                                      <xs:element name="orderRef" type="xs:string" minOccurs="0" />
+                                      <xs:element name="articleRef" type="xs:string" minOccurs="0" />
+                                      <xs:element name="sku" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="sizeId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="userCategoryId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="userCategoryDesc" type="xs:string" minOccurs="0" />
+                                            <xs:element name="colorId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="eanCodeId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="skuNetWeight" type="xs:string" minOccurs="0" />
+                                            <xs:element name="skuPiecesQty" type="xs:string" minOccurs="0" />
+                                            <xs:element name="salePriceCurrency" type="xs:string" minOccurs="0" />
+                                            <xs:element name="salePrice" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerDesc" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerDesc2" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerAddress" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerAddress2" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerZipCode" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerCountry" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerCountryId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerEmail" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerMid" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerPhoneNumber" type="xs:string" minOccurs="0" />
+                                            <xs:element name="manufacturerFax" type="xs:string" minOccurs="0" />
+                                            <xs:element name="customsCodeImport" type="xs:string" minOccurs="0" />
+                                            <xs:element name="vatTypeId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="firstInvoiceValue" type="xs:string" minOccurs="0" />
+                                            <xs:element name="firstInvoicePrice" type="xs:string" minOccurs="0" />
+                                            <xs:element name="sellingValueId" type="xs:string" minOccurs="0" />
+                                            <xs:element name="unitSellingPrice" type="xs:string" minOccurs="0" />
+                                            <xs:element name="carryOverFlag" type="xs:string" minOccurs="0" />
+                                            <xs:element name="sellOutSeason" type="xs:string" minOccurs="0" />
+                                            <xs:element name="vatCodeId" type="xs:string" minOccurs="0" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="shipment" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

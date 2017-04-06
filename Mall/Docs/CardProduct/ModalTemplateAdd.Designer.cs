@@ -44,12 +44,24 @@
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTemplateId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFieldIn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colFieldOut = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.settingDocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colOrder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrefix = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPostfix = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTranslate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTemplate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colId1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDocField = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescr = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
@@ -60,10 +72,18 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.buttonEdit1);
             this.panelControl1.Controls.Add(this.textEdit3);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.textEdit2);
@@ -72,7 +92,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(799, 61);
+            this.panelControl1.Size = new System.Drawing.Size(799, 121);
             this.panelControl1.TabIndex = 0;
             // 
             // textEdit3
@@ -150,10 +170,14 @@
             // 
             this.gridControl1.DataSource = this.bindingSourceTemplate;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 61);
+            this.gridControl1.Location = new System.Drawing.Point(0, 121);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(799, 336);
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBox1,
+            this.repositoryItemGridLookUpEdit1,
+            this.repositoryItemSpinEdit1});
+            this.gridControl1.Size = new System.Drawing.Size(799, 276);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -181,62 +205,166 @@
             // 
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
-            this.colId.Visible = true;
-            this.colId.VisibleIndex = 0;
             // 
             // colTemplateId
             // 
             this.colTemplateId.FieldName = "TemplateId";
             this.colTemplateId.Name = "colTemplateId";
-            this.colTemplateId.Visible = true;
-            this.colTemplateId.VisibleIndex = 1;
             // 
             // colFieldIn
             // 
+            this.colFieldIn.Caption = "Поле вх.документа";
+            this.colFieldIn.ColumnEdit = this.repositoryItemComboBox1;
             this.colFieldIn.FieldName = "FieldIn";
             this.colFieldIn.Name = "colFieldIn";
             this.colFieldIn.Visible = true;
-            this.colFieldIn.VisibleIndex = 2;
+            this.colFieldIn.VisibleIndex = 0;
+            this.colFieldIn.Width = 239;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
             // colFieldOut
             // 
+            this.colFieldOut.Caption = "Поле исх.документа";
+            this.colFieldOut.ColumnEdit = this.repositoryItemGridLookUpEdit1;
             this.colFieldOut.FieldName = "FieldOut";
             this.colFieldOut.Name = "colFieldOut";
             this.colFieldOut.Visible = true;
-            this.colFieldOut.VisibleIndex = 3;
+            this.colFieldOut.VisibleIndex = 1;
+            this.colFieldOut.Width = 239;
+            // 
+            // repositoryItemGridLookUpEdit1
+            // 
+            this.repositoryItemGridLookUpEdit1.AutoHeight = false;
+            this.repositoryItemGridLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemGridLookUpEdit1.DataSource = this.settingDocBindingSource;
+            this.repositoryItemGridLookUpEdit1.DisplayMember = "Descr";
+            this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
+            this.repositoryItemGridLookUpEdit1.NullText = "";
+            this.repositoryItemGridLookUpEdit1.ValueMember = "Id";
+            this.repositoryItemGridLookUpEdit1.View = this.repositoryItemGridLookUpEdit1View;
+            // 
+            // settingDocBindingSource
+            // 
+            this.settingDocBindingSource.DataSource = typeof(DAL.Entities.SettingDoc);
+            // 
+            // repositoryItemGridLookUpEdit1View
+            // 
+            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId1,
+            this.colDocField,
+            this.colDescr,
+            this.colIsActive});
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // colOrder
             // 
+            this.colOrder.Caption = "Порядок";
+            this.colOrder.ColumnEdit = this.repositoryItemSpinEdit1;
             this.colOrder.FieldName = "Order";
             this.colOrder.Name = "colOrder";
             this.colOrder.Visible = true;
-            this.colOrder.VisibleIndex = 4;
+            this.colOrder.VisibleIndex = 2;
+            this.colOrder.Width = 55;
             // 
             // colPrefix
             // 
+            this.colPrefix.Caption = "Префикс";
             this.colPrefix.FieldName = "Prefix";
             this.colPrefix.Name = "colPrefix";
             this.colPrefix.Visible = true;
-            this.colPrefix.VisibleIndex = 5;
+            this.colPrefix.VisibleIndex = 3;
+            this.colPrefix.Width = 92;
             // 
             // colPostfix
             // 
+            this.colPostfix.Caption = "Постфикс";
             this.colPostfix.FieldName = "Postfix";
             this.colPostfix.Name = "colPostfix";
             this.colPostfix.Visible = true;
-            this.colPostfix.VisibleIndex = 6;
+            this.colPostfix.VisibleIndex = 4;
+            this.colPostfix.Width = 92;
             // 
             // colTranslate
             // 
+            this.colTranslate.Caption = "Переводить";
             this.colTranslate.FieldName = "Translate";
             this.colTranslate.Name = "colTranslate";
             this.colTranslate.Visible = true;
-            this.colTranslate.VisibleIndex = 7;
+            this.colTranslate.VisibleIndex = 5;
+            this.colTranslate.Width = 70;
             // 
             // colTemplate
             // 
             this.colTemplate.FieldName = "Template";
             this.colTemplate.Name = "colTemplate";
+            // 
+            // colId1
+            // 
+            this.colId1.FieldName = "Id";
+            this.colId1.Name = "colId1";
+            // 
+            // colDocField
+            // 
+            this.colDocField.FieldName = "DocField";
+            this.colDocField.Name = "colDocField";
+            // 
+            // colDescr
+            // 
+            this.colDescr.Caption = "Название поля";
+            this.colDescr.FieldName = "Descr";
+            this.colDescr.Name = "colDescr";
+            this.colDescr.Visible = true;
+            this.colDescr.VisibleIndex = 0;
+            // 
+            // colIsActive
+            // 
+            this.colIsActive.FieldName = "IsActive";
+            this.colIsActive.Name = "colIsActive";
+            // 
+            // repositoryItemSpinEdit1
+            // 
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            // 
+            // buttonEdit1
+            // 
+            this.buttonEdit1.Location = new System.Drawing.Point(88, 58);
+            this.buttonEdit1.Name = "buttonEdit1";
+            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.buttonEdit1.Size = new System.Drawing.Size(365, 20);
+            this.buttonEdit1.TabIndex = 5;
+            this.buttonEdit1.EditValueChanged += new System.EventHandler(this.buttonEdit1_EditValueChanged);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(12, 61);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(26, 13);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "Файл";
             // 
             // ModalTemplateAdd
             // 
@@ -268,6 +396,12 @@
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,5 +429,17 @@
         public DevExpress.XtraEditors.TextEdit textEdit2;
         public DevExpress.XtraEditors.TextEdit textEdit1;
         public DevExpress.XtraEditors.TextEdit textEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
+        private System.Windows.Forms.BindingSource settingDocBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn colId1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDocField;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescr;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsActive;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

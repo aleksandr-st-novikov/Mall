@@ -11,9 +11,11 @@ namespace DAL.Entities
     public class TemplateTable
     {
         public int Id { get; set; }
+
+        //[ForeignKey("template_fk")]
         public int TemplateId { get; set; }
         public string FieldIn { get; set; }
-        public string FieldOut { get; set; }
+        public int FieldOut { get; set; }
         public int Order { get; set; }
         public string Prefix { get; set; }
         public string Postfix { get; set; }

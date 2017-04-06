@@ -17,7 +17,7 @@ namespace DAL.Entities
 
         public DbSet<Template> Template { get; set; }
         public DbSet<TemplateTable> TemplateTable { get; set; }
-
+        public DbSet<SettingDoc> SettingDoc { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
