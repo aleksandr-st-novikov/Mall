@@ -42,14 +42,6 @@ namespace Mall.Docs.CardProduct
             templateContext.context.TemplateTable.Where(t => t.TemplateId == templateId).Load();
             gridControl1.DataSource = templateContext.context.TemplateTable.Local.ToBindingList();
 
-            DataTable dt = GetFileFields();
-            List<string> comboData = new List<string>();
-            foreach (DataColumn column in dt.Columns)
-            {
-                comboData.Add(column.ColumnName);
-            }
-            repositoryItemComboBox1.Items.AddRange(comboData);
-
             List<SettingDoc> lookupData = await templateContext.context.SettingDoc.Where(s => s.IsActive == true && !String.IsNullOrEmpty(s.Descr)).ToListAsync();
             settingDocBindingSource.DataSource = lookupData;
         }
@@ -81,12 +73,12 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private DataTable GetFileFields()
+        private DataTable GetFileFields(string file)
         {
             try
             {
                 // Строка подключения
-                string file = @"e:\VS\Mall\Data\Книга1.xls";
+                //string file = @"e:\VS\Mall\Data\Книга1.xls";
                 string ConnectionString = "";
                 if (System.IO.Path.GetExtension(file).ToUpper() == ".XLS")
                 {
@@ -125,9 +117,37 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private void buttonEdit1_EditValueChanged(object sender, EventArgs e)
+        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                buttonEdit1.Text = openFileDialog1.FileName;
+
+                DataTable dt = GetFileFields(buttonEdit1.Text);
+                List<string> comboData = new List<string>();
+                foreach (DataColumn column in dt.Columns)
+                {
+                    comboData.Add(column.ColumnName);
+                }
+                repositoryItemComboBox1.Items.AddRange(comboData);
+
+                gridControl1.Enabled = true;
+            }
+        }
+
+        private void textEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
+        }
+
+        private void textEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
         }
     }
 }

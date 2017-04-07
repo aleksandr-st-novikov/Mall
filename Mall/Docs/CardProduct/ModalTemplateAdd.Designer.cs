@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
@@ -49,21 +51,20 @@
             this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.settingDocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colOrder = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrefix = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPostfix = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTranslate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTemplate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDocField = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOrder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colPrefix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPostfix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTranslate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTemplate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -77,7 +78,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -95,12 +95,31 @@
             this.panelControl1.Size = new System.Drawing.Size(799, 121);
             this.panelControl1.TabIndex = 0;
             // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(12, 61);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(26, 13);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "Файл";
+            // 
+            // buttonEdit1
+            // 
+            this.buttonEdit1.Location = new System.Drawing.Point(88, 58);
+            this.buttonEdit1.Name = "buttonEdit1";
+            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.buttonEdit1.Size = new System.Drawing.Size(365, 20);
+            this.buttonEdit1.TabIndex = 5;
+            this.buttonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
+            // 
             // textEdit3
             // 
             this.textEdit3.Location = new System.Drawing.Point(88, 32);
             this.textEdit3.Name = "textEdit3";
             this.textEdit3.Size = new System.Drawing.Size(365, 20);
             this.textEdit3.TabIndex = 4;
+            this.textEdit3.EditValueChanged += new System.EventHandler(this.textEdit3_EditValueChanged);
             // 
             // labelControl2
             // 
@@ -112,6 +131,7 @@
             // 
             // textEdit2
             // 
+            this.textEdit2.Enabled = false;
             this.textEdit2.Location = new System.Drawing.Point(395, 9);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Size = new System.Drawing.Size(58, 20);
@@ -123,6 +143,7 @@
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(301, 20);
             this.textEdit1.TabIndex = 1;
+            this.textEdit1.EditValueChanged += new System.EventHandler(this.textEdit1_EditValueChanged);
             // 
             // labelControl1
             // 
@@ -149,6 +170,7 @@
             // simpleButtonSave
             // 
             this.simpleButtonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.simpleButtonSave.Enabled = false;
             this.simpleButtonSave.Location = new System.Drawing.Point(634, 9);
             this.simpleButtonSave.Name = "simpleButtonSave";
             this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
@@ -170,6 +192,7 @@
             // 
             this.gridControl1.DataSource = this.bindingSourceTemplate;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Enabled = false;
             this.gridControl1.Location = new System.Drawing.Point(0, 121);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -200,6 +223,7 @@
             this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             // 
             // colId
             // 
@@ -266,6 +290,29 @@
             this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // colId1
+            // 
+            this.colId1.FieldName = "Id";
+            this.colId1.Name = "colId1";
+            // 
+            // colDocField
+            // 
+            this.colDocField.FieldName = "DocField";
+            this.colDocField.Name = "colDocField";
+            // 
+            // colDescr
+            // 
+            this.colDescr.Caption = "Название поля";
+            this.colDescr.FieldName = "Descr";
+            this.colDescr.Name = "colDescr";
+            this.colDescr.Visible = true;
+            this.colDescr.VisibleIndex = 0;
+            // 
+            // colIsActive
+            // 
+            this.colIsActive.FieldName = "IsActive";
+            this.colIsActive.Name = "colIsActive";
+            // 
             // colOrder
             // 
             this.colOrder.Caption = "Порядок";
@@ -275,6 +322,23 @@
             this.colOrder.Visible = true;
             this.colOrder.VisibleIndex = 2;
             this.colOrder.Width = 55;
+            // 
+            // repositoryItemSpinEdit1
+            // 
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
             // colPrefix
             // 
@@ -308,64 +372,6 @@
             this.colTemplate.FieldName = "Template";
             this.colTemplate.Name = "colTemplate";
             // 
-            // colId1
-            // 
-            this.colId1.FieldName = "Id";
-            this.colId1.Name = "colId1";
-            // 
-            // colDocField
-            // 
-            this.colDocField.FieldName = "DocField";
-            this.colDocField.Name = "colDocField";
-            // 
-            // colDescr
-            // 
-            this.colDescr.Caption = "Название поля";
-            this.colDescr.FieldName = "Descr";
-            this.colDescr.Name = "colDescr";
-            this.colDescr.Visible = true;
-            this.colDescr.VisibleIndex = 0;
-            // 
-            // colIsActive
-            // 
-            this.colIsActive.FieldName = "IsActive";
-            this.colIsActive.Name = "colIsActive";
-            // 
-            // repositoryItemSpinEdit1
-            // 
-            this.repositoryItemSpinEdit1.AutoHeight = false;
-            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.repositoryItemSpinEdit1.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
-            // 
-            // buttonEdit1
-            // 
-            this.buttonEdit1.Location = new System.Drawing.Point(88, 58);
-            this.buttonEdit1.Name = "buttonEdit1";
-            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit1.Size = new System.Drawing.Size(365, 20);
-            this.buttonEdit1.TabIndex = 5;
-            this.buttonEdit1.EditValueChanged += new System.EventHandler(this.buttonEdit1_EditValueChanged);
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(12, 61);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(26, 13);
-            this.labelControl3.TabIndex = 6;
-            this.labelControl3.Text = "Файл";
-            // 
             // ModalTemplateAdd
             // 
             this.AcceptButton = this.simpleButtonSave;
@@ -388,6 +394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
@@ -401,7 +408,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
