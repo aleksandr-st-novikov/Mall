@@ -81,7 +81,7 @@ namespace Mall.Docs.CardProduct
                 {
                     templateContext = new TemplateEFContext();
                     await LoadDataAsync();
-                    templateContext.Dispose();
+                    //templateContext.Dispose();
                 }
             }
             this.gridView1.FocusedRowHandle = rowHandle;

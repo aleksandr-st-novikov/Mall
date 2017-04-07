@@ -34,6 +34,11 @@ namespace DAL.EFContext
             {
                 context.Template.Remove(entry);
             }
+            List<TemplateTable> toDelete = await context.TemplateTable.Where(t => t.TemplateId == templateId).ToListAsync();
+            if(toDelete.Count() > 0)
+            {
+                context.TemplateTable.RemoveRange(toDelete);
+            }
         }
 
         //public DbSet<TemplateTable> TemplateTable
