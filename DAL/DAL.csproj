@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="EFContext\ApplicationEFContext.cs" />
+    <Compile Include="EFContext\DocumentEFContext.cs" />
     <Compile Include="EFContext\SettingDocEFContext.cs" />
     <Compile Include="EFContext\TemplateEFContext.cs" />
     <Compile Include="Entities\Document.cs" />

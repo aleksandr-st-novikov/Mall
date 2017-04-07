@@ -158,5 +158,10 @@ namespace Mall.Docs.CardProduct
         {
             await EditDataAsync();
         }
+
+        private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace DAL.Entities
         public int Id { get; set; }
         public DateTime DateDocument { get; set; }
         public virtual ICollection<DocumentTable> DocumentTable { get; set; }
+        public int TemplateId { get; set; }
+        public virtual Template Template { get; set; }
     }
 }

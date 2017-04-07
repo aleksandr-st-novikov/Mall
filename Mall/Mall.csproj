@@ -85,6 +85,12 @@
     <Compile Include="Docs\CardProduct\JournalTemplate.Designer.cs">
       <DependentUpon>JournalTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docs\CardProduct\ModalCardProductAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docs\CardProduct\ModalCardProductAdd.Designer.cs">
+      <DependentUpon>ModalCardProductAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docs\CardProduct\ModalSettingDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,7 @@
     <Compile Include="Docs\CardProduct\ModalTemplateAdd.Designer.cs">
       <DependentUpon>ModalTemplateAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IO.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docs\CardProduct\JournalTemplate.resx">
       <DependentUpon>JournalTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docs\CardProduct\ModalCardProductAdd.resx">
+      <DependentUpon>ModalCardProductAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docs\CardProduct\ModalSettingDoc.resx">
       <DependentUpon>ModalSettingDoc.cs</DependentUpon>

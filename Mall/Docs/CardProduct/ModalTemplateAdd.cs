@@ -12,6 +12,7 @@ using System.Data.Entity;
 using DAL.EFContext;
 using DAL.Entities;
 using System.Data.OleDb;
+using Mall.Helpers;
 
 namespace Mall.Docs.CardProduct
 {
@@ -35,6 +36,7 @@ namespace Mall.Docs.CardProduct
         {
             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
             view.SetRowCellValue(e.RowHandle, view.Columns["TemplateId"], int.Parse(textEdit2.Text));
+            view.SetRowCellValue(e.RowHandle, view.Columns["Order"], 1);
         }
 
         private async void ModalTemplateAdd_Load(object sender, EventArgs e)
@@ -65,7 +67,7 @@ namespace Mall.Docs.CardProduct
                         Name = textEdit1.Text,
                         Commentary = textEdit3.Text
                     };
-                    templateId = await templateContext.AddTemplateAsync(template);
+                    templateId = await templateContext.SaveTemplateAsync(template);
 
                     if (!isEdit)
                     {
@@ -84,57 +86,13 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private DataTable GetFileFields(string file)
-        {
-            try
-            {
-                // Строка подключения
-                //string file = @"e:\VS\Mall\Data\Книга1.xls";
-                string ConnectionString = "";
-                if (System.IO.Path.GetExtension(file).ToUpper() == ".XLS")
-                {
-                    ConnectionString = String.Format(
-                        "Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=\"Excel 8.0;HDR=Yes\";Data Source={0}", file);
-                }
-                //пока не работает
-                else if (System.IO.Path.GetExtension(file).ToUpper() == ".XLSX")
-                {
-                    ConnectionString = String.Format(
-                        "Provider=Microsoft.ACE.OLEDB.12.0;Extended Properties =\"Excel 12.0 Xml;HDR=YES\";Data Source={0}", file);
-                }
-
-                // Открываем соединение
-                DataSet ds = new DataSet("EXCEL");
-                OleDbConnection cn = new OleDbConnection(ConnectionString);
-                cn.Open();
-
-                DataTable schemaTable =
-                        cn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
-                                new object[] { null, null, null, "TABLE" });
-
-                // Берем название первого листа
-                string sheet1 = (string)schemaTable.Rows[0].ItemArray[2];
-                // Выбираем все данные с листа
-                string select = String.Format("SELECT * FROM [{0}]", sheet1);
-                OleDbDataAdapter ad = new OleDbDataAdapter(select, cn);
-                ad.Fill(ds);
-                DataTable tb = ds.Tables[0];
-                return tb;
-            }
-            catch(Exception ex)
-            {
-                XtraMessageBox.Show(ex.Message);
-                return null;
-            }
-        }
-
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 buttonEdit1.Text = openFileDialog1.FileName;
 
-                DataTable dt = GetFileFields(buttonEdit1.Text);
+                DataTable dt = IO.GetFileFields(buttonEdit1.Text);
                 List<string> comboData = new List<string>();
                 foreach (DataColumn column in dt.Columns)
                 {

@@ -10,7 +10,7 @@ namespace DAL.EFContext
 {
     public class TemplateEFContext : ApplicationEFContext
     {
-        public async Task<int> AddTemplateAsync(Template template)
+        public async Task<int> SaveTemplateAsync(Template template)
         {
             Template entry = await context.Template.FirstOrDefaultAsync(t => t.Id == template.Id);
             if (entry != null)
