@@ -27,6 +27,15 @@ namespace DAL.EFContext
             return template.Id;
         }
 
+        public async Task DeleteTemplateAsync(int templateId)
+        {
+            Template entry = await context.Template.FindAsync(templateId);
+            if(entry != null)
+            {
+                context.Template.Remove(entry);
+            }
+        }
+
         //public DbSet<TemplateTable> TemplateTable
         //{
         //    get { return context.TemplateTable; }

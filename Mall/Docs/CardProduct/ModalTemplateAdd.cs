@@ -19,6 +19,7 @@ namespace Mall.Docs.CardProduct
     {
         private TemplateEFContext templateContext = null;
         public int templateId;
+        public bool isEdit;
 
         public ModalTemplateAdd()
         {
@@ -39,11 +40,17 @@ namespace Mall.Docs.CardProduct
         private async void ModalTemplateAdd_Load(object sender, EventArgs e)
         {
             templateContext = new TemplateEFContext();
-            templateContext.context.TemplateTable.Where(t => t.TemplateId == templateId).Load();
+            await templateContext.context.TemplateTable.Where(t => t.TemplateId == templateId).LoadAsync();
             gridControl1.DataSource = templateContext.context.TemplateTable.Local.ToBindingList();
 
             List<SettingDoc> lookupData = await templateContext.context.SettingDoc.Where(s => s.IsActive == true && !String.IsNullOrEmpty(s.Descr)).ToListAsync();
             settingDocBindingSource.DataSource = lookupData;
+
+            if(isEdit)
+            {
+                gridControl1.Enabled = true;
+                gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
+            }
         }
 
         private async void simpleButtonSave_Click(object sender, EventArgs e)
@@ -54,14 +61,18 @@ namespace Mall.Docs.CardProduct
                 {
                     Template template = new Template()
                     {
+                        Id = templateId,
                         Name = textEdit1.Text,
                         Commentary = textEdit3.Text
                     };
                     templateId = await templateContext.AddTemplateAsync(template);
 
-                    foreach (var d in templateContext.context.TemplateTable.Local)
+                    if (!isEdit)
                     {
-                        d.TemplateId = templateId;
+                        foreach (var d in templateContext.context.TemplateTable.Local)
+                        {
+                            d.TemplateId = templateId;
+                        }
                     }
                     await templateContext.context.SaveChangesAsync();
                     dbContextTransaction.Commit();
@@ -132,6 +143,7 @@ namespace Mall.Docs.CardProduct
                 repositoryItemComboBox1.Items.AddRange(comboData);
 
                 gridControl1.Enabled = true;
+                gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             }
         }
 

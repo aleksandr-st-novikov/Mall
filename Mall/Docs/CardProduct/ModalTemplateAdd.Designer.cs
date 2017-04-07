@@ -92,7 +92,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(799, 121);
+            this.panelControl1.Size = new System.Drawing.Size(799, 88);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl3
@@ -193,14 +193,14 @@
             this.gridControl1.DataSource = this.bindingSourceTemplate;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Enabled = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 121);
+            this.gridControl1.Location = new System.Drawing.Point(0, 88);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemGridLookUpEdit1,
             this.repositoryItemSpinEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(799, 276);
+            this.gridControl1.Size = new System.Drawing.Size(799, 309);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -421,7 +421,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButtonClose;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colTemplateId;
@@ -447,5 +446,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        public DevExpress.XtraGrid.GridControl gridControl1;
     }
 }

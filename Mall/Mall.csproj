@@ -136,6 +136,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />
+    <None Include="Properties\DataSources\DAL.Entities.Template.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.TemplateTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

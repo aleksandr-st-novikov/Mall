@@ -48,11 +48,21 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCommentary = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTemplateTable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.templateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -121,6 +131,7 @@
             this.barLargeButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem4.LargeGlyph")));
             this.barLargeButtonItem4.Name = "barLargeButtonItem4";
             this.barLargeButtonItem4.ShowCaptionOnBar = false;
+            this.barLargeButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem4_ItemClick);
             // 
             // barLargeButtonItem5
             // 
@@ -130,6 +141,7 @@
             this.barLargeButtonItem5.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem5.LargeGlyph")));
             this.barLargeButtonItem5.Name = "barLargeButtonItem5";
             this.barLargeButtonItem5.ShowCaptionOnBar = false;
+            this.barLargeButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem5_ItemClick);
             // 
             // barLargeButtonItem6
             // 
@@ -193,6 +205,7 @@
             this.barLargeButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem1.LargeGlyph")));
             this.barLargeButtonItem1.Name = "barLargeButtonItem1";
             this.barLargeButtonItem1.ShowCaptionOnBar = false;
+            this.barLargeButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem1_ItemClick);
             // 
             // barLargeButtonItem2
             // 
@@ -240,23 +253,95 @@
             this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
             this.barButtonItem1.Name = "barButtonItem1";
             // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 47);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.MenuManager = this.barManager1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(860, 427);
+            this.gridControl1.TabIndex = 4;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colName,
+            this.colCommentary,
+            this.colTemplateTable});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.AllowIncrementalSearch = true;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colId
+            // 
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            // 
+            // colName
+            // 
+            this.colName.Caption = "Наименование";
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            this.colName.Width = 300;
+            // 
+            // colCommentary
+            // 
+            this.colCommentary.Caption = "Комментарий";
+            this.colCommentary.FieldName = "Commentary";
+            this.colCommentary.Name = "colCommentary";
+            this.colCommentary.Visible = true;
+            this.colCommentary.VisibleIndex = 1;
+            this.colCommentary.Width = 200;
+            // 
+            // colTemplateTable
+            // 
+            this.colTemplateTable.FieldName = "TemplateTable";
+            this.colTemplateTable.Name = "colTemplateTable";
+            // 
+            // templateBindingSource
+            // 
+            this.templateBindingSource.DataSource = typeof(DAL.Entities.Template);
+            // 
             // JournalTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 474);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.KeyPreview = true;
             this.Name = "JournalTemplate";
             this.Text = "JournalTemplate";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.JournalTemplate_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.JournalTemplate_FormClosed);
+            this.Load += new System.EventHandler(this.JournalTemplate_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JournalTemplate_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +367,12 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource templateBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colCommentary;
+        private DevExpress.XtraGrid.Columns.GridColumn colTemplateTable;
     }
 }
