@@ -50,12 +50,14 @@ namespace Mall.Docs.CardProduct
 
         private async void JournalTemplate_Load(object sender, EventArgs e)
         {
-            templateContext = new TemplateEFContext();
+            //templateContext = new TemplateEFContext();
             await LoadDataAsync();
         }
 
         private async Task LoadDataAsync()
         {
+            if (templateContext != null) templateContext.Dispose();
+            templateContext = new TemplateEFContext();
             gridControl1.DataSource = await templateContext.context.Template.OrderBy(t => t.Name).ToListAsync();
         }
 
@@ -79,6 +81,7 @@ namespace Mall.Docs.CardProduct
                 result = modalTemplateAdd.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    if (templateContext != null) templateContext.Dispose();
                     templateContext = new TemplateEFContext();
                     await LoadDataAsync();
                     //templateContext.Dispose();

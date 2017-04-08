@@ -63,6 +63,7 @@
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Entities\TemplateTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CellDataView.cs" />
     <Compile Include="ViewModel\TemplateForDocumentView.cs" />
   </ItemGroup>
   <ItemGroup />

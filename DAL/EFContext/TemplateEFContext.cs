@@ -51,7 +51,8 @@ namespace DAL.EFContext
                                                        select new TemplateForDocumentView()
                                                        {
                                                            FileldIn = tt.FieldIn,
-                                                           FieldOut = sd.Descr,
+                                                           FieldOutName = sd.Descr,
+                                                           FieldOut = sd.DocField,
                                                            Order = tt.Order,
                                                            Prefix = tt.Prefix,
                                                            Postfix = tt.Postfix,

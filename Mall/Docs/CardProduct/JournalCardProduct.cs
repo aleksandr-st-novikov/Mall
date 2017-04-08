@@ -42,6 +42,8 @@ namespace Mall.Docs.CardProduct
                 }
                 newMDIChild.dateEdit1.DateTime = DateTime.Now;
                 newMDIChild.textEdit1.Text = "-1";
+                newMDIChild.cardProductId = -1;
+                newMDIChild.isEdit = false;
                 newMDIChild.Show();
             }
         }

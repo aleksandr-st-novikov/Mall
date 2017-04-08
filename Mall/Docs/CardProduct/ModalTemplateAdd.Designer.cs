@@ -92,7 +92,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(799, 88);
+            this.panelControl1.Size = new System.Drawing.Size(1027, 88);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl3
@@ -164,7 +164,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 397);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(799, 39);
+            this.panelControl2.Size = new System.Drawing.Size(1027, 39);
             this.panelControl2.TabIndex = 2;
             // 
             // simpleButtonSave
@@ -200,7 +200,7 @@
             this.repositoryItemComboBox1,
             this.repositoryItemGridLookUpEdit1,
             this.repositoryItemSpinEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(799, 309);
+            this.gridControl1.Size = new System.Drawing.Size(1027, 309);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
