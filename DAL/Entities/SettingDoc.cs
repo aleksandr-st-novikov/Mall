@@ -14,5 +14,6 @@ namespace DAL.Entities
         public string DocField { get; set; }
         public string Descr { get; set; }
         public bool IsActive { get; set; }
+        public virtual ICollection<TemplateTable> TemplateTable { get; set; }
     }
 }

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DAL.EFContext;
+using DAL.Entities;
 
 namespace Mall.Docs.CardProduct
 {
@@ -23,6 +25,38 @@ namespace Mall.Docs.CardProduct
         private void barLargeButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Close();
+        }
+
+        private async void barLargeButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!childWindowIsOpen(ModalCardProductAdd.formText))
+            {
+                ModalCardProductAdd newMDIChild = new ModalCardProductAdd();
+                newMDIChild.MdiParent = this.MdiParent;
+                newMDIChild.Text = ModalCardProductAdd.formText;
+
+                //заполняем шаблонами
+                using (TemplateEFContext templateContext = new TemplateEFContext())
+                {
+                    newMDIChild.comboBoxEdit1.Properties.Items.AddRange(await templateContext.GetListTemplateNameAsync());
+                }
+                newMDIChild.dateEdit1.DateTime = DateTime.Now;
+                newMDIChild.textEdit1.Text = "-1";
+                newMDIChild.Show();
+            }
+        }
+
+        private bool childWindowIsOpen(string formText)
+        {
+            for (int i = 0; i < MdiChildren.Count(); i++)
+            {
+                if (MdiChildren[i].Text == formText)
+                {
+                    MdiChildren[i].Activate();
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

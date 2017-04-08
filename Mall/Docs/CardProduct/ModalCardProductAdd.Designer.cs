@@ -36,6 +36,7 @@
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -45,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +87,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Size = new System.Drawing.Size(347, 20);
             this.comboBoxEdit1.TabIndex = 3;
+            this.comboBoxEdit1.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit1_SelectedIndexChanged);
             // 
             // labelControl3
             // 
@@ -113,6 +116,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.textEdit1);
             this.panelControl1.Controls.Add(this.simpleButtonSave);
             this.panelControl1.Controls.Add(this.buttonEdit1);
             this.panelControl1.Controls.Add(this.simpleButton1);
@@ -126,6 +130,16 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1040, 90);
             this.panelControl1.TabIndex = 7;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Enabled = false;
+            this.textEdit1.Location = new System.Drawing.Point(160, 8);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.textEdit1.Size = new System.Drawing.Size(100, 20);
+            this.textEdit1.TabIndex = 7;
             // 
             // simpleButtonSave
             // 
@@ -152,6 +166,7 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // ModalCardProductAdd
             // 
@@ -168,6 +183,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModalCardProductAdd";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
@@ -175,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -184,9 +201,7 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
@@ -194,5 +209,8 @@
         private DevExpress.XtraEditors.SimpleButton simpleButtonSave;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public DevExpress.XtraEditors.DateEdit dateEdit1;
+        public DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        public DevExpress.XtraEditors.TextEdit textEdit1;
     }
 }

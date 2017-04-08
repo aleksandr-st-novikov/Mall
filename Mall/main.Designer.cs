@@ -97,6 +97,7 @@
             this.ribbonPageGroupJournal.ItemLinks.Add(this.barButtonItem3);
             this.ribbonPageGroupJournal.Name = "ribbonPageGroupJournal";
             this.ribbonPageGroupJournal.ShowCaptionButton = false;
+            resources.ApplyResources(this.ribbonPageGroupJournal, "ribbonPageGroupJournal");
             // 
             // xtraTabbedMdiManager1
             // 

@@ -171,6 +171,7 @@
             this.barLargeButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem3.LargeGlyph")));
             this.barLargeButtonItem3.Name = "barLargeButtonItem3";
             this.barLargeButtonItem3.ShowCaptionOnBar = false;
+            this.barLargeButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem3_ItemClick);
             // 
             // barLargeButtonItem4
             // 

@@ -15,11 +15,12 @@ namespace DAL.Entities
         //[ForeignKey("template_fk")]
         public int TemplateId { get; set; }
         public string FieldIn { get; set; }
-        public int FieldOut { get; set; }
+        public int SettingDocId { get; set; }
         public int Order { get; set; }
         public string Prefix { get; set; }
         public string Postfix { get; set; }
         public bool Translate { get; set; }
         public virtual Template Template { get; set; }
+        public virtual SettingDoc SettingDoc { get; set; }
     }
 }

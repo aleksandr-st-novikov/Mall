@@ -191,6 +191,9 @@
   <data name="ribbonControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="ribbonPageGroupJournal.Text" xml:space="preserve">
+    <value>Карточки товаров</value>
+  </data>
   <data name="ribbonPageJournal.Text" xml:space="preserve">
     <value>Документы</value>
   </data>

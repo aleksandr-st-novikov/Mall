@@ -47,7 +47,7 @@
             this.colTemplateId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFieldIn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.colFieldOut = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSettingDocId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.settingDocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -211,7 +211,7 @@
             this.colId,
             this.colTemplateId,
             this.colFieldIn,
-            this.colFieldOut,
+            this.colSettingDocId,
             this.colOrder,
             this.colPrefix,
             this.colPostfix,
@@ -252,15 +252,15 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
-            // colFieldOut
+            // colSettingDocId
             // 
-            this.colFieldOut.Caption = "Поле исх.документа";
-            this.colFieldOut.ColumnEdit = this.repositoryItemGridLookUpEdit1;
-            this.colFieldOut.FieldName = "FieldOut";
-            this.colFieldOut.Name = "colFieldOut";
-            this.colFieldOut.Visible = true;
-            this.colFieldOut.VisibleIndex = 1;
-            this.colFieldOut.Width = 239;
+            this.colSettingDocId.Caption = "Поле исх.документа";
+            this.colSettingDocId.ColumnEdit = this.repositoryItemGridLookUpEdit1;
+            this.colSettingDocId.FieldName = "SettingDocId";
+            this.colSettingDocId.Name = "colSettingDocId";
+            this.colSettingDocId.Visible = true;
+            this.colSettingDocId.VisibleIndex = 1;
+            this.colSettingDocId.Width = 239;
             // 
             // repositoryItemGridLookUpEdit1
             // 
@@ -427,7 +427,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colTemplateId;
         private DevExpress.XtraGrid.Columns.GridColumn colFieldIn;
-        private DevExpress.XtraGrid.Columns.GridColumn colFieldOut;
+        private DevExpress.XtraGrid.Columns.GridColumn colSettingDocId;
         private DevExpress.XtraGrid.Columns.GridColumn colOrder;
         private DevExpress.XtraGrid.Columns.GridColumn colPrefix;
         private DevExpress.XtraGrid.Columns.GridColumn colPostfix;
