@@ -42,5 +42,12 @@ namespace DAL.EFContext
                 return false;
             }
         }
+
+        public async Task DeleteAsync<T>(int key) where T : class
+        {
+            var item = await this.context.Set<T>().FindAsync(key);
+            this.context.Set<T>().Remove(item);
+        }
+
     }
 }

@@ -20,6 +20,9 @@ namespace DAL.Entities
         public DbSet<SettingDoc> SettingDoc { get; set; }
         public DbSet<Document> Document { get; set; }
         public DbSet<DocumentTable> DocumentTable { get; set; }
+        public DbSet<Brand> Brand { get; set; }
+        public DbSet<Dictionary> Dictionary { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
