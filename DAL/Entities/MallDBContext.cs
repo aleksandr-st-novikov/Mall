@@ -22,7 +22,7 @@ namespace DAL.Entities
         public DbSet<DocumentTable> DocumentTable { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Dictionary> Dictionary { get; set; }
-
+        public DbSet<DictionaryTable> DictionaryTable { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

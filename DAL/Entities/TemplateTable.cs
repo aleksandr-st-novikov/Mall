@@ -20,6 +20,7 @@ namespace DAL.Entities
         public string Prefix { get; set; }
         public string Postfix { get; set; }
         public bool Translate { get; set; }
+        public bool TranslateByWord { get; set; }
         public virtual Template Template { get; set; }
         public virtual SettingDoc SettingDoc { get; set; }
     }

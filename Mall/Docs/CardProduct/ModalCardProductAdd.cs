@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using DAL.EFContext;
 using DAL.Entities;
 using DAL.ViewModel;
@@ -101,11 +96,24 @@ namespace Mall.Docs.CardProduct
                     }
                 }
                 propertyInfo = PopulateResultCell(documentTable, propertyInfo, cellValues);
-                documentTableList.Add(documentTable);
+                if (documentTableList.FirstOrDefault(d => d.Document == documentTable.Document
+                     && d.F001 == documentTable.F001
+                     && d.F002 == documentTable.F002
+                     && d.F003 == documentTable.F003
+                     && d.F004 == documentTable.F004
+                     && d.F005 == documentTable.F005
+                     && d.F006 == documentTable.F006
+                     && d.F007 == documentTable.F007
+                     && d.F008 == documentTable.F008
+                     && d.F009 == documentTable.F009
+                     && d.F010 == documentTable.F010) == null)
+                {
+                    documentTableList.Add(documentTable);
+                }
             }
 
-            //gridControl1.DataSource = context.DocumentTable.Local.ToBindingList(documentTableList);
-            gridControl1.DataSource = documentTableList.Distinct().ToList();
+            //gridControl1.DataSource = context.DocumentTable.Local.ToBindingList();
+            gridControl1.DataSource = documentTableList.ToList();
             if (documentTableList != null) documentTableList = null;
 
             //gridControl1.Enabled = true;

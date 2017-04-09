@@ -60,6 +60,7 @@
     <Compile Include="EFContext\TemplateEFContext.cs" />
     <Compile Include="Entities\Brand.cs" />
     <Compile Include="Entities\Dictionary.cs" />
+    <Compile Include="Entities\DictionaryTable.cs" />
     <Compile Include="Entities\Document.cs" />
     <Compile Include="Entities\DocumentTable.cs" />
     <Compile Include="Entities\MallDBContext.cs" />

@@ -16,13 +16,26 @@ namespace DAL.EFContext
             if (entry != null)
             {
                 entry.BrandId = dictionary.BrandId;
-                entry.IsTranslate = dictionary.IsTranslate;
-                entry.WordOriginal = dictionary.WordOriginal;
-                entry.WordTranslate = dictionary.WordTranslate;
+                entry.Commentary = dictionary.Commentary;
+                entry.Name = dictionary.Name;
             }
             else
             {
                 context.Dictionary.Add(dictionary);
+            }
+        }
+
+        public async Task DeleteDictionaryAsync(int dictionaryId)
+        {
+            Dictionary entry = await context.Dictionary.FindAsync(dictionaryId);
+            if (entry != null)
+            {
+                context.Dictionary.Remove(entry);
+            }
+            List<DictionaryTable> toDelete = await context.DictionaryTable.Where(t => t.DictionaryId == dictionaryId).ToListAsync();
+            if (toDelete.Count() > 0)
+            {
+                context.DictionaryTable.RemoveRange(toDelete);
             }
         }
 
