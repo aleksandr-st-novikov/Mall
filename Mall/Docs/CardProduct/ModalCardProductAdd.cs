@@ -9,13 +9,15 @@ using DAL.ViewModel;
 using System.Data.Entity;
 using Mall.Helpers;
 using System.Reflection;
+using DevExpress.XtraEditors;
 
 namespace Mall.Docs.CardProduct
 {
     public partial class ModalCardProductAdd : DevExpress.XtraEditors.XtraForm
     {
         public static string formText = "Добавление - Карточки товаров";
-        private MallDBContext context = null;
+        private DocumentEFContext documentContext;
+        private TemplateEFContext templateContext;
         public int cardProductId;
         public bool isEdit;
         private List<TemplateForDocumentView> templateDV = null;
@@ -24,24 +26,8 @@ namespace Mall.Docs.CardProduct
         public ModalCardProductAdd()
         {
             InitializeComponent();
-            context = new MallDBContext();
-        }
-
-        private async void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //очищаем табличную часть
-
-
-            //пересоздаем грид
-            using (TemplateEFContext templateContext = new TemplateEFContext())
-            {
-                templateDV = await templateContext.GetTemplateForDocumentByNameAsync(comboBoxEdit1.Text);
-                if (templateDV.Count() == 0)
-                    return;
-            }
-            await context.DocumentTable.Where(t => t.DocumentId == cardProductId).LoadAsync();
-            gridControl1.DataSource = context.DocumentTable.Local.ToBindingList();
-            InitGrid(templateDV);
+            documentContext = new DocumentEFContext();
+            templateContext = new TemplateEFContext();
         }
 
         private void InitGrid(List<TemplateForDocumentView> templateDV)
@@ -112,12 +98,8 @@ namespace Mall.Docs.CardProduct
                 }
             }
 
-            //gridControl1.DataSource = context.DocumentTable.Local.ToBindingList();
-            gridControl1.DataSource = documentTableList.ToList();
+            documentContext.context.DocumentTable.AddRange(documentTableList);
             if (documentTableList != null) documentTableList = null;
-
-            //gridControl1.Enabled = true;
-            //gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
         }
 
         private static PropertyInfo PopulateResultCell(DocumentTable documentTable, PropertyInfo propertyInfo, List<CellDataView> cellValues)
@@ -162,5 +144,102 @@ namespace Mall.Docs.CardProduct
         {
             GC.Collect();
         }
+
+        private async void simpleButtonSave_Click(object sender, EventArgs e)
+        {
+            await SaveDataAsync();
+        }
+
+        private async System.Threading.Tasks.Task SaveDataAsync()
+        {
+            using (var dbContextTransaction = documentContext.context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Document document = new Document()
+                    {
+                        Id = cardProductId,
+                        DateDocument = (DateTime)dateEdit1.EditValue,
+                        TemplateId = (int)lookUpEdit1.EditValue
+                    };
+                    cardProductId = await documentContext.SaveDocumentAsync(document);
+
+                    if (!isEdit)
+                    {
+                        foreach (var d in documentContext.context.DocumentTable.Local)
+                        {
+                            d.DocumentId = cardProductId;
+                        }
+                    }
+                    await documentContext.context.SaveChangesAsync();
+                    dbContextTransaction.Commit();
+
+                    //интерфейс
+                    textEdit1.Text = cardProductId.ToString();
+                    this.Text = "Карточки товаров №" + textEdit1.Text;
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+        }
+
+        private async void ModalCardProductAdd_Load(object sender, EventArgs e)
+        {
+            templateBindingSource.DataSource = await templateContext.GetListTemplateAsync();
+
+            await documentContext.context.DocumentTable.Where(t => t.DocumentId == cardProductId).LoadAsync();
+            gridControl1.DataSource = documentContext.context.DocumentTable.Local.ToBindingList();
+
+            simpleButtonSave.Enabled = false;
+        }
+
+        private async void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            //очищаем табличную часть
+
+
+            //пересоздаем грид
+            templateDV = await templateContext.GetTemplateForDocumentByIdAsync((int)lookUpEdit1.EditValue);
+            if (templateDV.Count() == 0) return;
+
+            await documentContext.context.DocumentTable.Where(t => t.DocumentId == cardProductId).LoadAsync();
+            gridControl1.DataSource = documentContext.context.DocumentTable.Local.ToBindingList();
+            InitGrid(templateDV);
+
+            simpleButtonSave.Enabled = true;
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
+        }
+
+        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
+        }
+
+        private async void ModalCardProductAdd_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (simpleButtonSave.Enabled)
+            {
+                switch (XtraMessageBox.Show("Сохранить документ?", DAL.Data.appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        await SaveDataAsync();
+                        e.Cancel = false;
+                        break;
+                    case DialogResult.No:
+                        e.Cancel = false;
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+        }
+
     }
 }

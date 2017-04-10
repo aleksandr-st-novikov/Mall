@@ -36,10 +36,10 @@ namespace Mall.Docs.CardProduct
                 newMDIChild.Text = ModalCardProductAdd.formText;
 
                 //заполняем шаблонами
-                using (TemplateEFContext templateContext = new TemplateEFContext())
-                {
-                    newMDIChild.comboBoxEdit1.Properties.Items.AddRange(await templateContext.GetListTemplateNameAsync());
-                }
+                //using (TemplateEFContext templateContext = new TemplateEFContext())
+                //{
+                //    newMDIChild.comboBoxEdit1.Properties.Items.AddRange(await templateContext.GetListTemplateNameAsync());
+                //}
                 newMDIChild.dateEdit1.DateTime = DateTime.Now;
                 newMDIChild.textEdit1.Text = "-1";
                 newMDIChild.cardProductId = -1;

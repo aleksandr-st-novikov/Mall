@@ -170,7 +170,6 @@
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.simpleButtonSave.Enabled = false;
             this.simpleButtonSave.Location = new System.Drawing.Point(634, 9);
             this.simpleButtonSave.Name = "simpleButtonSave";

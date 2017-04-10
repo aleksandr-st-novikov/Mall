@@ -154,6 +154,8 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DAL.Entities.Dictionary.datasource" />
+    <None Include="Properties\DataSources\DAL.Entities.DocumentTable.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Template.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.TemplateTable.datasource" />
