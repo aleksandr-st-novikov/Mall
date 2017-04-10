@@ -10,7 +10,7 @@ namespace DAL.EFContext
 {
     public class DictionaryEFContext : ApplicationEFContext
     {
-        public async Task AddDictionaryAsync(Dictionary dictionary)
+        public async Task<int> AddDictionaryAsync(Dictionary dictionary)
         {
             Dictionary entry = await context.Dictionary.FirstOrDefaultAsync(t => t.Id == dictionary.Id);
             if (entry != null)
@@ -23,6 +23,8 @@ namespace DAL.EFContext
             {
                 context.Dictionary.Add(dictionary);
             }
+            await context.SaveChangesAsync();
+            return dictionary.Id;
         }
 
         public async Task DeleteDictionaryAsync(int dictionaryId)
@@ -37,6 +39,11 @@ namespace DAL.EFContext
             {
                 context.DictionaryTable.RemoveRange(toDelete);
             }
+        }
+
+        public async Task<Dictionary> GetDictionaryByIdAsync(int dictionaryId)
+        {
+            return await context.Dictionary.FindAsync(dictionaryId);
         }
 
     }

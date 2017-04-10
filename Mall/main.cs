@@ -93,5 +93,16 @@ namespace Mall
                 newMDIChild.Show();
             }
         }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!childWindowIsOpen(JournalDictionary.formText))
+            {
+                JournalDictionary newMDIChild = new JournalDictionary();
+                newMDIChild.MdiParent = this;
+                newMDIChild.Text = JournalDictionary.formText;
+                newMDIChild.Show();
+            }
+        }
     }
 }

@@ -85,6 +85,18 @@
     <Compile Include="Directory\General\JournalDictionary.Designer.cs">
       <DependentUpon>JournalDictionary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Directory\General\ModalDictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directory\General\ModalDictionary.Designer.cs">
+      <DependentUpon>ModalDictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Directory\General\ModalDictionaryAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directory\General\ModalDictionaryAdd.Designer.cs">
+      <DependentUpon>ModalDictionaryAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docs\CardProduct\JournalCardProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +142,12 @@
     <EmbeddedResource Include="Directory\General\JournalDictionary.resx">
       <DependentUpon>JournalDictionary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Directory\General\ModalDictionary.resx">
+      <DependentUpon>ModalDictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Directory\General\ModalDictionaryAdd.resx">
+      <DependentUpon>ModalDictionaryAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Docs\CardProduct\JournalCardProduct.resx">
       <DependentUpon>JournalCardProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +183,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DAL.Entities.Brand.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Dictionary.datasource" />
+    <None Include="Properties\DataSources\DAL.Entities.DictionaryTable.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.DocumentTable.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Template.datasource" />

@@ -49,11 +49,11 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dictionaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBrandId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBrandId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCommentary = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
@@ -61,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictionaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -121,6 +121,7 @@
             this.barLargeButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem3.LargeGlyph")));
             this.barLargeButtonItem3.Name = "barLargeButtonItem3";
             this.barLargeButtonItem3.ShowCaptionOnBar = false;
+            this.barLargeButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem3_ItemClick);
             // 
             // barLargeButtonItem4
             // 
@@ -130,6 +131,7 @@
             this.barLargeButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem4.LargeGlyph")));
             this.barLargeButtonItem4.Name = "barLargeButtonItem4";
             this.barLargeButtonItem4.ShowCaptionOnBar = false;
+            this.barLargeButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem4_ItemClick);
             // 
             // barLargeButtonItem5
             // 
@@ -202,6 +204,7 @@
             this.barLargeButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem1.LargeGlyph")));
             this.barLargeButtonItem1.Name = "barLargeButtonItem1";
             this.barLargeButtonItem1.ShowCaptionOnBar = false;
+            this.barLargeButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem1_ItemClick);
             // 
             // barLargeButtonItem2
             // 
@@ -262,6 +265,10 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
+            // dictionaryBindingSource
+            // 
+            this.dictionaryBindingSource.DataSource = typeof(DAL.Entities.Dictionary);
+            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -277,23 +284,10 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // dictionaryBindingSource
-            // 
-            this.dictionaryBindingSource.DataSource = typeof(DAL.Entities.Dictionary);
-            // 
             // colId
             // 
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
-            // 
-            // colBrandId
-            // 
-            this.colBrandId.Caption = "Бренд";
-            this.colBrandId.FieldName = "BrandId";
-            this.colBrandId.Name = "colBrandId";
-            this.colBrandId.Visible = true;
-            this.colBrandId.VisibleIndex = 1;
-            this.colBrandId.Width = 170;
             // 
             // colName
             // 
@@ -302,7 +296,14 @@
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
-            this.colName.Width = 250;
+            this.colName.Width = 350;
+            // 
+            // colBrandId
+            // 
+            this.colBrandId.Caption = "Бренд";
+            this.colBrandId.FieldName = "BrandId";
+            this.colBrandId.Name = "colBrandId";
+            this.colBrandId.Width = 170;
             // 
             // colCommentary
             // 
@@ -310,7 +311,7 @@
             this.colCommentary.FieldName = "Commentary";
             this.colCommentary.Name = "colCommentary";
             this.colCommentary.Visible = true;
-            this.colCommentary.VisibleIndex = 2;
+            this.colCommentary.VisibleIndex = 1;
             this.colCommentary.Width = 300;
             // 
             // JournalDictionary
@@ -326,14 +327,15 @@
             this.Name = "JournalDictionary";
             this.Text = "JournalDictionary";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.JournalDictionary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictionaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
