@@ -1,6 +1,6 @@
-﻿namespace Mall.Docs.CardProduct
+﻿namespace Mall.Directory.General
 {
-    partial class JournalCardProduct
+    partial class JournalBrand
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JournalCardProduct));
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.bar3 = new DevExpress.XtraBars.Bar();
-            this.bar4 = new DevExpress.XtraBars.Bar();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JournalBrand));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar5 = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItem3 = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -53,67 +49,20 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.brandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.barLargeButtonItem7 = new DevExpress.XtraBars.BarLargeButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockRow = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.OptionsBar.AllowQuickCustomization = false;
-            this.bar1.OptionsBar.AutoPopupMode = DevExpress.XtraBars.BarAutoPopupMode.None;
-            this.bar1.OptionsBar.DisableCustomization = true;
-            this.bar1.OptionsBar.DrawDragBorder = false;
-            this.bar1.OptionsBar.UseWholeRow = true;
-            this.bar1.Text = "Tools";
-            // 
-            // bar2
-            // 
-            this.bar2.BarName = "Tools";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.OptionsBar.AllowQuickCustomization = false;
-            this.bar2.OptionsBar.AutoPopupMode = DevExpress.XtraBars.BarAutoPopupMode.None;
-            this.bar2.OptionsBar.DisableCustomization = true;
-            this.bar2.OptionsBar.DrawDragBorder = false;
-            this.bar2.OptionsBar.UseWholeRow = true;
-            this.bar2.Text = "Tools";
-            // 
-            // bar3
-            // 
-            this.bar3.BarName = "Tools";
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.AutoPopupMode = DevExpress.XtraBars.BarAutoPopupMode.None;
-            this.bar3.OptionsBar.DisableCustomization = true;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Tools";
-            // 
-            // bar4
-            // 
-            this.bar4.BarName = "Tools";
-            this.bar4.DockCol = 0;
-            this.bar4.DockRow = 0;
-            this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar4.OptionsBar.AllowQuickCustomization = false;
-            this.bar4.OptionsBar.AutoPopupMode = DevExpress.XtraBars.BarAutoPopupMode.None;
-            this.bar4.OptionsBar.DisableCustomization = true;
-            this.bar4.OptionsBar.DrawDragBorder = false;
-            this.bar4.OptionsBar.UseWholeRow = true;
-            this.bar4.Text = "Tools";
             // 
             // barManager1
             // 
@@ -134,7 +83,8 @@
             this.barLargeButtonItem3,
             this.barLargeButtonItem4,
             this.barLargeButtonItem5,
-            this.barLargeButtonItem6});
+            this.barLargeButtonItem6,
+            this.barLargeButtonItem7});
             this.barManager1.MaxItemId = 12;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemDateEdit1,
@@ -147,6 +97,7 @@
             this.bar5.DockRow = 0;
             this.bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem7),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem3),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem4),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem5),
@@ -171,7 +122,7 @@
             this.barLargeButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem3.LargeGlyph")));
             this.barLargeButtonItem3.Name = "barLargeButtonItem3";
             this.barLargeButtonItem3.ShowCaptionOnBar = false;
-            this.barLargeButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem3_ItemClick);
+            this.barLargeButtonItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barLargeButtonItem4
             // 
@@ -181,6 +132,7 @@
             this.barLargeButtonItem4.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem4.LargeGlyph")));
             this.barLargeButtonItem4.Name = "barLargeButtonItem4";
             this.barLargeButtonItem4.ShowCaptionOnBar = false;
+            this.barLargeButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barLargeButtonItem5
             // 
@@ -207,6 +159,7 @@
             this.barStaticItem1.Id = 1;
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barEditItem1
             // 
@@ -214,6 +167,7 @@
             this.barEditItem1.Edit = this.repositoryItemDateEdit1;
             this.barEditItem1.Id = 0;
             this.barEditItem1.Name = "barEditItem1";
+            this.barEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemDateEdit1
             // 
@@ -231,6 +185,7 @@
             this.barEditItem2.Edit = this.repositoryItemDateEdit2;
             this.barEditItem2.Id = 3;
             this.barEditItem2.Name = "barEditItem2";
+            this.barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemDateEdit2
             // 
@@ -250,6 +205,7 @@
             this.barLargeButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem1.LargeGlyph")));
             this.barLargeButtonItem1.Name = "barLargeButtonItem1";
             this.barLargeButtonItem1.ShowCaptionOnBar = false;
+            this.barLargeButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barLargeButtonItem2
             // 
@@ -266,28 +222,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1060, 47);
+            this.barDockControlTop.Size = new System.Drawing.Size(944, 47);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 472);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1060, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 379);
+            this.barDockControlBottom.Size = new System.Drawing.Size(944, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 332);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1060, 47);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlRight.Location = new System.Drawing.Point(944, 47);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 332);
             // 
             // barButtonItem1
             // 
@@ -299,40 +255,77 @@
             // 
             // gridControl1
             // 
+            this.gridControl1.DataSource = this.brandBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Location = new System.Drawing.Point(0, 47);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1060, 425);
+            this.gridControl1.Size = new System.Drawing.Size(944, 332);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
+            // brandBindingSource
+            // 
+            this.brandBindingSource.DataSource = typeof(DAL.Entities.Brand);
+            // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colName});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Indicator;
             // 
-            // JournalCardProduct
+            // colId
+            // 
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            // 
+            // colName
+            // 
+            this.colName.Caption = "Наименование";
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            this.colName.Width = 300;
+            // 
+            // barLargeButtonItem7
+            // 
+            this.barLargeButtonItem7.Caption = "Сохранить";
+            this.barLargeButtonItem7.Glyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem7.Glyph")));
+            this.barLargeButtonItem7.Id = 11;
+            this.barLargeButtonItem7.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem7.LargeGlyph")));
+            this.barLargeButtonItem7.Name = "barLargeButtonItem7";
+            this.barLargeButtonItem7.ShowCaptionOnBar = false;
+            this.barLargeButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem7_ItemClick);
+            // 
+            // JournalBrand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 472);
+            this.ClientSize = new System.Drawing.Size(944, 379);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "JournalCardProduct";
-            this.Text = "Карточки товаров - Журнал";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Name = "JournalBrand";
+            this.Text = "JournalBrand";
+            this.Load += new System.EventHandler(this.JournalBrand_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -341,10 +334,6 @@
 
         #endregion
 
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.Bar bar4;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar5;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem3;
@@ -365,5 +354,9 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource brandBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem7;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using Mall.Directory.General;
 using Mall.Docs.CardProduct;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,17 @@ namespace Mall
                 {
                     return;
                 }
+            }
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!childWindowIsOpen(JournalBrand.formText))
+            {
+                JournalBrand newMDIChild = new JournalBrand();
+                newMDIChild.MdiParent = this;
+                newMDIChild.Text = JournalBrand.formText;
+                newMDIChild.Show();
             }
         }
     }

@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Directory\General\JournalBrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directory\General\JournalBrand.Designer.cs">
+      <DependentUpon>JournalBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Directory\General\JournalDictionary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Directory\General\JournalBrand.resx">
+      <DependentUpon>JournalBrand.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Directory\General\JournalDictionary.resx">
       <DependentUpon>JournalDictionary.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +163,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DAL.Entities.Brand.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Dictionary.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.DocumentTable.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />

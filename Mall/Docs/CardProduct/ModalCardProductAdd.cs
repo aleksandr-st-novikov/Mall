@@ -20,6 +20,7 @@ namespace Mall.Docs.CardProduct
         private TemplateEFContext templateContext;
         public int cardProductId;
         public bool isEdit;
+        private bool isEmpty;
         private List<TemplateForDocumentView> templateDV = null;
         private List<DocumentTable> documentTableList = null;
 
@@ -100,6 +101,7 @@ namespace Mall.Docs.CardProduct
 
             documentContext.context.DocumentTable.AddRange(documentTableList);
             if (documentTableList != null) documentTableList = null;
+            isEmpty = false;
         }
 
         private static PropertyInfo PopulateResultCell(DocumentTable documentTable, PropertyInfo propertyInfo, List<CellDataView> cellValues)
@@ -177,6 +179,7 @@ namespace Mall.Docs.CardProduct
                     //интерфейс
                     textEdit1.Text = cardProductId.ToString();
                     this.Text = "Карточки товаров №" + textEdit1.Text;
+                    isEdit = true;
                 }
                 catch (Exception)
                 {
@@ -198,7 +201,12 @@ namespace Mall.Docs.CardProduct
         private async void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             //очищаем табличную часть
-
+            if (isEdit || !isEmpty)
+            {
+                //var itemsToDelete = documentContext.context.Set<DocumentTable>();
+                //documentContext.context.DocumentTable.RemoveRange(itemsToDelete);
+                documentContext.context.DocumentTable.Local.Clear();
+            }
 
             //пересоздаем грид
             templateDV = await templateContext.GetTemplateForDocumentByIdAsync((int)lookUpEdit1.EditValue);
@@ -241,5 +249,20 @@ namespace Mall.Docs.CardProduct
             }
         }
 
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            documentContext.context.DocumentTable.Local.Clear();
+            simpleButtonSave.Enabled = true;
+        }
+
+        private void simpleButtonClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
