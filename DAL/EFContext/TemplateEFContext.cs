@@ -42,25 +42,25 @@ namespace DAL.EFContext
             }
         }
 
-        public async Task<List<TemplateForDocumentView>> GetTemplateForDocumentByNameAsync(string name)
-        {
-            List<TemplateForDocumentView> tml = await (from t in context.Template
-                                                       join tt in context.TemplateTable on t.Id equals tt.TemplateId
-                                                       join sd in context.SettingDoc on tt.SettingDocId equals sd.Id
-                                                       where t.Name == name && sd.IsActive == true
-                                                       select new TemplateForDocumentView()
-                                                       {
-                                                           FileldIn = tt.FieldIn,
-                                                           FieldOutName = sd.Descr,
-                                                           FieldOut = sd.DocField,
-                                                           Order = tt.Order,
-                                                           Prefix = tt.Prefix,
-                                                           Postfix = tt.Postfix,
-                                                           Translate = tt.Translate
-                                                       }).ToListAsync();
+        //public async Task<List<TemplateForDocumentView>> GetTemplateForDocumentByNameAsync(string name)
+        //{
+        //    List<TemplateForDocumentView> tml = await (from t in context.Template
+        //                                               join tt in context.TemplateTable on t.Id equals tt.TemplateId
+        //                                               join sd in context.SettingDoc on tt.SettingDocId equals sd.Id
+        //                                               where t.Name == name && sd.IsActive == true
+        //                                               select new TemplateForDocumentView()
+        //                                               {
+        //                                                   FileldIn = tt.FieldIn,
+        //                                                   FieldOutName = sd.Descr,
+        //                                                   FieldOut = sd.DocField,
+        //                                                   Order = tt.Order,
+        //                                                   Prefix = tt.Prefix,
+        //                                                   Postfix = tt.Postfix,
+        //                                                   Translate = tt.Translate
+        //                                               }).ToListAsync();
 
-            return tml;
-        }
+        //    return tml;
+        //}
 
         public async Task<List<TemplateForDocumentView>> GetTemplateForDocumentByIdAsync(int templateId)
         {
@@ -76,7 +76,9 @@ namespace DAL.EFContext
                                                            Order = tt.Order,
                                                            Prefix = tt.Prefix,
                                                            Postfix = tt.Postfix,
-                                                           Translate = tt.Translate
+                                                           Translate = tt.Translate,
+                                                           TranslateByWord = tt.TranslateByWord,
+                                                           DictionaryId = tt.DictionaryId
                                                        }).ToListAsync();
 
             return tml;

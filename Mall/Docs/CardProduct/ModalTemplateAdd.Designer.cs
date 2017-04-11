@@ -61,7 +61,13 @@
             this.colPostfix = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTranslate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTranslateByWord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDictionaryId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemGridLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.dictionaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.repositoryItemGridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTemplate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -79,6 +85,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictionaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -93,7 +103,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(799, 88);
+            this.panelControl1.Size = new System.Drawing.Size(858, 88);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl3
@@ -165,13 +175,13 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 397);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(799, 39);
+            this.panelControl2.Size = new System.Drawing.Size(858, 39);
             this.panelControl2.TabIndex = 2;
             // 
             // simpleButtonSave
             // 
             this.simpleButtonSave.Enabled = false;
-            this.simpleButtonSave.Location = new System.Drawing.Point(634, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(693, 8);
             this.simpleButtonSave.Name = "simpleButtonSave";
             this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonSave.TabIndex = 1;
@@ -181,7 +191,7 @@
             // simpleButtonClose
             // 
             this.simpleButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButtonClose.Location = new System.Drawing.Point(715, 9);
+            this.simpleButtonClose.Location = new System.Drawing.Point(774, 8);
             this.simpleButtonClose.Name = "simpleButtonClose";
             this.simpleButtonClose.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonClose.TabIndex = 0;
@@ -199,8 +209,10 @@
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemGridLookUpEdit1,
-            this.repositoryItemSpinEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(799, 309);
+            this.repositoryItemSpinEdit1,
+            this.repositoryItemComboBox2,
+            this.repositoryItemGridLookUpEdit2});
+            this.gridControl1.Size = new System.Drawing.Size(858, 309);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -217,6 +229,7 @@
             this.colPostfix,
             this.colTranslate,
             this.colTranslateByWord,
+            this.colDictionaryId,
             this.colTemplate});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -378,10 +391,59 @@
             this.colTranslateByWord.Visible = true;
             this.colTranslateByWord.VisibleIndex = 6;
             // 
+            // colDictionaryId
+            // 
+            this.colDictionaryId.Caption = "Словарь";
+            this.colDictionaryId.ColumnEdit = this.repositoryItemGridLookUpEdit2;
+            this.colDictionaryId.FieldName = "DictionaryId";
+            this.colDictionaryId.Name = "colDictionaryId";
+            this.colDictionaryId.Visible = true;
+            this.colDictionaryId.VisibleIndex = 7;
+            // 
+            // repositoryItemGridLookUpEdit2
+            // 
+            this.repositoryItemGridLookUpEdit2.AutoHeight = false;
+            this.repositoryItemGridLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemGridLookUpEdit2.DataSource = this.dictionaryBindingSource;
+            this.repositoryItemGridLookUpEdit2.DisplayMember = "Name";
+            this.repositoryItemGridLookUpEdit2.Name = "repositoryItemGridLookUpEdit2";
+            this.repositoryItemGridLookUpEdit2.NullText = "";
+            this.repositoryItemGridLookUpEdit2.ValueMember = "Id";
+            this.repositoryItemGridLookUpEdit2.View = this.repositoryItemGridLookUpEdit2View;
+            // 
+            // dictionaryBindingSource
+            // 
+            this.dictionaryBindingSource.DataSource = typeof(DAL.Entities.Dictionary);
+            // 
+            // repositoryItemGridLookUpEdit2View
+            // 
+            this.repositoryItemGridLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colName});
+            this.repositoryItemGridLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit2View.Name = "repositoryItemGridLookUpEdit2View";
+            this.repositoryItemGridLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit2View.OptionsView.ShowColumnHeaders = false;
+            this.repositoryItemGridLookUpEdit2View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            // 
             // colTemplate
             // 
             this.colTemplate.FieldName = "Template";
             this.colTemplate.Name = "colTemplate";
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
             // 
             // ModalTemplateAdd
             // 
@@ -389,7 +451,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.simpleButtonClose;
-            this.ClientSize = new System.Drawing.Size(799, 436);
+            this.ClientSize = new System.Drawing.Size(858, 436);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
@@ -401,6 +463,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModalTemplateAdd";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModalTemplateAdd_FormClosing);
             this.Load += new System.EventHandler(this.ModalTemplateAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -419,6 +482,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.settingDocBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictionaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -459,5 +526,11 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         public DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Columns.GridColumn colTranslateByWord;
+        private DevExpress.XtraGrid.Columns.GridColumn colDictionaryId;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit2;
+        private System.Windows.Forms.BindingSource dictionaryBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit2View;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
     }
 }

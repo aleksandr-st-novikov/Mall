@@ -10,6 +10,8 @@ using System.Data.Entity;
 using Mall.Helpers;
 using System.Reflection;
 using DevExpress.XtraEditors;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Mall.Docs.CardProduct
 {
@@ -18,11 +20,12 @@ namespace Mall.Docs.CardProduct
         public static string formText = "Добавление - Карточки товаров";
         private DocumentEFContext documentContext;
         private TemplateEFContext templateContext;
+        private DictionaryEFContext dictionaryContext;
         public int cardProductId;
         public bool isEdit;
         private bool isEmpty;
-        private List<TemplateForDocumentView> templateDV = null;
-        private List<DocumentTable> documentTableList = null;
+        private List<TemplateForDocumentView> templateDV;
+        private List<DocumentTable> documentTableList;
 
         public ModalCardProductAdd()
         {
@@ -31,6 +34,10 @@ namespace Mall.Docs.CardProduct
             templateContext = new TemplateEFContext();
         }
 
+        /// <summary>
+        /// Инициализация грида
+        /// </summary>
+        /// <param name="templateDV"></param>
         private void InitGrid(List<TemplateForDocumentView> templateDV)
         {
             gridView1.Columns["Id"].Visible = gridView1.Columns["DocumentId"].Visible = gridView1.Columns["Document"].Visible = false;
@@ -48,6 +55,11 @@ namespace Mall.Docs.CardProduct
             }
         }
 
+        /// <summary>
+        /// Выбор файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -56,7 +68,12 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Загрузка данных из файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void simpleButton1_Click(object sender, EventArgs e)
         {
             DataTable dt = IO.GetFileFields(buttonEdit1.Text);
             DocumentTable documentTable = null;
@@ -79,7 +96,7 @@ namespace Mall.Docs.CardProduct
                     if (templateDV.FirstOrDefault(t => t.FileldIn == dt.Columns[c].ColumnName) != null)
                     {
                         //сначала собираем все нужные значения по отдельным полям
-                        tmp = SetTempValue(dt, tmp, cellValues, r, c);
+                        tmp = await SetTempValueAsync(dt, tmp, cellValues, r, c);
                     }
                 }
                 propertyInfo = PopulateResultCell(documentTable, propertyInfo, cellValues);
@@ -104,12 +121,17 @@ namespace Mall.Docs.CardProduct
             isEmpty = false;
         }
 
+        /// <summary>
+        /// Объединяем в результиющую ячейку временные данные
+        /// </summary>
+        /// <param name="documentTable"></param>
+        /// <param name="propertyInfo"></param>
+        /// <param name="cellValues"></param>
+        /// <returns></returns>
         private static PropertyInfo PopulateResultCell(DocumentTable documentTable, PropertyInfo propertyInfo, List<CellDataView> cellValues)
         {
             cellValues.GroupBy(cell => cell.FieldOut).ToList().ForEach(cell =>
             {
-                //переводим
-
                 //объединяем в результирующие поля
                 if (propertyInfo != null) propertyInfo = null;
                 propertyInfo = documentTable.GetType().GetProperty(cell.Key.ToUpper());
@@ -123,18 +145,31 @@ namespace Mall.Docs.CardProduct
             return propertyInfo;
         }
 
-        private TemplateForDocumentView SetTempValue(DataTable dt, TemplateForDocumentView tmp, List<CellDataView> cellValues, int r, int c)
+        /// <summary>
+        /// Заполняем данными одну запись - с одной строки
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="tmp"></param>
+        /// <param name="cellValues"></param>
+        /// <param name="r"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        private async Task<TemplateForDocumentView> SetTempValueAsync(DataTable dt, TemplateForDocumentView tmp, List<CellDataView> cellValues, int r, int c)
         {
             if (tmp != null) tmp = null;
             tmp = templateDV.FirstOrDefault(t => t.FileldIn.ToUpper() == dt.Columns[c].ColumnName.ToUpper());
             if (tmp != null)
             {
+                //перевод
+                string value = await TranslateAsync(dt.Rows[r].ItemArray.GetValue(c).ToString(), tmp, r, c);
+
                 cellValues.Add(new CellDataView()
                 {
                     FieldOut = tmp.FieldOut,
                     Order = tmp.Order,
                     Prefix = tmp.Prefix,
-                    Value = dt.Rows[r].ItemArray.GetValue(c).ToString(),
+                    //Value = dt.Rows[r].ItemArray.GetValue(c).ToString(),
+                    Value = value,
                     Postfix = tmp.Postfix
                 });
             }
@@ -142,17 +177,58 @@ namespace Mall.Docs.CardProduct
             return tmp;
         }
 
-        private void ModalCardProductAdd_FormClosed(object sender, FormClosedEventArgs e)
+        /// <summary>
+        /// Перевод ячеек по словам и полностью
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="tmp"></param>
+        /// <param name="r"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        private async Task<string> TranslateAsync(string original, TemplateForDocumentView tmp, int r, int c)
         {
-            GC.Collect();
+            string value = original;
+            if (tmp.TranslateByWord && tmp.DictionaryId != null)
+            {
+                string pattern = "((?:[a-zA-Z]+[-']?)*[a-zA-Z]+)";
+                MatchCollection words = Regex.Matches(original, pattern);
+                foreach (Match word in words)
+                {
+                    string translate = await dictionaryContext.GetTranslateAsync(word.ToString(), (int)tmp.DictionaryId);
+                    if (!String.IsNullOrEmpty(translate))
+                    {
+                        value = value.Replace(word.ToString(), translate);
+                    }
+                }
+            }
+
+            if (tmp.Translate && tmp.DictionaryId != null)
+            {
+                string translate = await dictionaryContext.GetTranslateAsync(original, (int)tmp.DictionaryId);
+                if (!String.IsNullOrEmpty(translate))
+                {
+                    value = value.Replace(original, translate);
+                }
+            }
+
+            return value;
         }
 
+        /// <summary>
+        /// Кнопка Сохранить
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void simpleButtonSave_Click(object sender, EventArgs e)
         {
             await SaveDataAsync();
         }
 
-        private async System.Threading.Tasks.Task SaveDataAsync()
+        /// <summary>
+        /// Сохранение документа
+        /// </summary>
+        /// <returns></returns>
+        private async Task SaveDataAsync()
         {
             using (var dbContextTransaction = documentContext.context.Database.BeginTransaction())
             {
@@ -180,6 +256,7 @@ namespace Mall.Docs.CardProduct
                     textEdit1.Text = cardProductId.ToString();
                     this.Text = "Карточки товаров №" + textEdit1.Text;
                     isEdit = true;
+                    simpleButtonSave.Enabled = false;
                 }
                 catch (Exception)
                 {
@@ -190,6 +267,7 @@ namespace Mall.Docs.CardProduct
 
         private async void ModalCardProductAdd_Load(object sender, EventArgs e)
         {
+            dictionaryContext = new DictionaryEFContext();
             templateBindingSource.DataSource = await templateContext.GetListTemplateAsync();
 
             await documentContext.context.DocumentTable.Where(t => t.DocumentId == cardProductId).LoadAsync();
@@ -198,6 +276,11 @@ namespace Mall.Docs.CardProduct
             simpleButtonSave.Enabled = false;
         }
 
+        /// <summary>
+        /// Выбор шаблона
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
             //очищаем табличную часть
@@ -219,14 +302,56 @@ namespace Mall.Docs.CardProduct
             simpleButtonSave.Enabled = true;
         }
 
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        /// <summary>
+        /// Очистка табличной части
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void simpleButton2_Click(object sender, EventArgs e)
         {
+            documentContext.context.DocumentTable.Local.Clear();
             simpleButtonSave.Enabled = true;
         }
 
-        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Перевод по кнопке - не использовать
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void simpleButton3_Click(object sender, EventArgs e)
         {
-            simpleButtonSave.Enabled = true;
+            foreach (var row in documentContext.context.DocumentTable.Local)
+            {
+                string field;
+                for(int i = 1; i <= 10; i++)
+                {
+                    field = "F" + i.ToString().PadLeft(3, '0');
+                }
+            }
+        }
+
+        /// <summary>
+        /// Поиск перевода слова
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="dictionaryId"></param>
+        /// <returns></returns>
+        private async Task<string> TranslateWordAsync(string original, int dictionaryId)
+        {
+            string translate = original;
+            using (DictionaryEFContext dictionaryContext = new DictionaryEFContext())
+            {
+                string entry = await dictionaryContext.GetTranslateAsync(original, dictionaryId);
+                translate = entry != null ? entry : translate;
+            }
+            return translate;
+        }
+
+        #region Служебные
+
+        private void simpleButtonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private async void ModalCardProductAdd_FormClosing(object sender, FormClosingEventArgs e)
@@ -249,20 +374,34 @@ namespace Mall.Docs.CardProduct
             }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            documentContext.context.DocumentTable.Local.Clear();
             simpleButtonSave.Enabled = true;
         }
 
-        private void simpleButtonClose_Click(object sender, EventArgs e)
+        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            Close();
+            simpleButtonSave.Enabled = true;
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
+        private void ModalCardProductAdd_FormClosed(object sender, FormClosedEventArgs e)
         {
+            GC.Collect();
+        }
 
+        #endregion
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                this.gridView1.DeleteSelectedRows();
+                simpleButtonSave.Enabled = true;
+            }
+            //if (e.KeyCode == Keys.Return)
+            //{
+            //    await EditDataAsync();
+            //}
         }
     }
 }

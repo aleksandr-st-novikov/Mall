@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,6 +45,16 @@ namespace DAL.EFContext
         public async Task<Dictionary> GetDictionaryByIdAsync(int dictionaryId)
         {
             return await context.Dictionary.FindAsync(dictionaryId);
+        }
+
+        public async Task<string> GetTranslateAsync(string original, int dictionaryId)
+        {
+            DictionaryTranslateResultView entry = await (from d in context.Dictionary
+                                                         join dt in context.DictionaryTable on d.Id equals dt.DictionaryId
+                                                         where d.Id == dictionaryId && dt.IsTranslate == true && dt.WordOriginal == original
+                                                         select new DictionaryTranslateResultView { Translate = dt.WordTranslate })
+                                                         .FirstOrDefaultAsync();
+            return entry != null ? entry.ToString() : "";
         }
 
     }

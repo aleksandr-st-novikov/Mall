@@ -82,13 +82,14 @@ namespace Mall.Docs.CardProduct
                 modalTemplateAdd.textEdit1.Text = this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Name"]).ToString();
                 modalTemplateAdd.textEdit3.Text = this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Commentary"]).ToString();
                 result = modalTemplateAdd.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    if (templateContext != null) templateContext.Dispose();
-                    templateContext = new TemplateEFContext();
-                    await LoadDataAsync();
-                    //templateContext.Dispose();
-                }
+                await ReloadEntryAsync(modalTemplateAdd.templateId);
+                //if (result == DialogResult.OK)
+                //{
+                //    if (templateContext != null) templateContext.Dispose();
+                //    templateContext = new TemplateEFContext();
+                //    await LoadDataAsync();
+                //    //templateContext.Dispose();
+                //}
             }
             this.gridView1.FocusedRowHandle = rowHandle;
         }

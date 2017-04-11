@@ -150,7 +150,7 @@
             // 
             // simpleButtonClose
             // 
-            this.simpleButtonClose.Location = new System.Drawing.Point(488, 31);
+            this.simpleButtonClose.Location = new System.Drawing.Point(488, 5);
             this.simpleButtonClose.Name = "simpleButtonClose";
             this.simpleButtonClose.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonClose.TabIndex = 10;
@@ -202,7 +202,7 @@
             // 
             this.simpleButtonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.simpleButtonSave.Enabled = false;
-            this.simpleButtonSave.Location = new System.Drawing.Point(407, 31);
+            this.simpleButtonSave.Location = new System.Drawing.Point(407, 5);
             this.simpleButtonSave.Name = "simpleButtonSave";
             this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonSave.TabIndex = 1;
@@ -224,9 +224,11 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // documentTableBindingSource
             // 
@@ -244,6 +246,7 @@
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModalCardProductAdd";

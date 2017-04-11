@@ -15,5 +15,7 @@ namespace DAL.ViewModel
         public string Prefix { get; set; }
         public string Postfix { get; set; }
         public bool Translate { get; set; }
+        public bool TranslateByWord { get; set; }
+        public int? DictionaryId { get; set; }
     }
 }

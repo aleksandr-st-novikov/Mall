@@ -18,7 +18,8 @@ namespace Mall.Docs.CardProduct
 {
     public partial class ModalTemplateAdd : DevExpress.XtraEditors.XtraForm
     {
-        private TemplateEFContext templateContext = null;
+        private TemplateEFContext templateContext;
+        private DictionaryEFContext dictionaryContext;
         public int templateId;
         public bool isEdit;
 
@@ -52,10 +53,20 @@ namespace Mall.Docs.CardProduct
             {
                 gridControl1.Enabled = true;
                 gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
+                simpleButtonSave.Enabled = false;
             }
+
+            dictionaryContext = new DictionaryEFContext();
+            await dictionaryContext.context.Dictionary.OrderBy(t => t.Name).LoadAsync();
+            dictionaryBindingSource.DataSource = dictionaryContext.context.Dictionary.Local.ToBindingList();
         }
 
         private async void simpleButtonSave_Click(object sender, EventArgs e)
+        {
+            await SaveDataAsync();
+        }
+
+        private async Task SaveDataAsync()
         {
             using (var dbContextTransaction = templateContext.context.Database.BeginTransaction())
             {
@@ -84,6 +95,7 @@ namespace Mall.Docs.CardProduct
                     dbContextTransaction.Rollback();
                 }
             }
+            simpleButtonSave.Enabled = false;
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -118,6 +130,26 @@ namespace Mall.Docs.CardProduct
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             simpleButtonSave.Enabled = true;
+        }
+
+        private async void ModalTemplateAdd_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (simpleButtonSave.Enabled)
+            {
+                switch (XtraMessageBox.Show("Сохранить документ?", DAL.Data.appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        await SaveDataAsync();
+                        e.Cancel = false;
+                        break;
+                    case DialogResult.No:
+                        e.Cancel = false;
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
         }
     }
 }

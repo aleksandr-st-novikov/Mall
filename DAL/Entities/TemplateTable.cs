@@ -11,8 +11,6 @@ namespace DAL.Entities
     public class TemplateTable
     {
         public int Id { get; set; }
-
-        //[ForeignKey("template_fk")]
         public int TemplateId { get; set; }
         public string FieldIn { get; set; }
         public int SettingDocId { get; set; }
@@ -21,7 +19,9 @@ namespace DAL.Entities
         public string Postfix { get; set; }
         public bool Translate { get; set; }
         public bool TranslateByWord { get; set; }
+        public int? DictionaryId { get; set; }
         public virtual Template Template { get; set; }
         public virtual SettingDoc SettingDoc { get; set; }
+        public virtual Dictionary Dictionary { get; set; }
     }
 }
