@@ -45,19 +45,20 @@ namespace Mall.Directory.General
 
         private async void JournalDictionary_Load(object sender, EventArgs e)
         {
-            await BindingData();
+            await BindingDataAsync();
         }
 
         private async void barLargeButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             rowHandle = this.gridView1.FocusedRowHandle;
             dictionaryContext.Dispose();
-            await BindingData();
+            await BindingDataAsync();
             this.gridView1.FocusedRowHandle = rowHandle;
         }
 
-        private async Task BindingData()
+        private async Task BindingDataAsync()
         {
+            if (dictionaryContext != null) dictionaryContext.Dispose();
             dictionaryContext = new DictionaryEFContext();
             await dictionaryContext.context.Dictionary.OrderBy(d => d.Name).LoadAsync();
             dictionaryBindingSource.DataSource = dictionaryContext.context.Dictionary.Local.ToBindingList();
@@ -83,11 +84,74 @@ namespace Mall.Directory.General
                 modalDictionary.dictionaryId = (int)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]);
                 modalDictionary.textEdit2.Text = this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]).ToString();
                 modalDictionary.isEdit = true;
-                modalDictionary.textEdit1.Text = this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Name"]).ToString();
+                modalDictionary.textEdit1.Text = (string)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Name"]);
+                modalDictionary.textEdit3.Text = (string)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Commentary"]);
                 result = modalDictionary.ShowDialog();
                 await ReloadEntryAsync(modalDictionary.dictionaryId);
             }
             this.gridView1.FocusedRowHandle = rowHandle;
+        }
+
+        private async void JournalDictionary_Activated(object sender, EventArgs e)
+        {
+            await BindingDataAsync();
+            if (rowHandle != 0)
+            {
+                this.gridView1.FocusedRowHandle = rowHandle;
+            }
+            else
+            {
+                this.gridControl1.ForceInitialize();
+            }
+        }
+
+        private async void JournalDictionary_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                await DeleteDataAsync();
+            }
+            if (e.KeyCode == Keys.Return)
+            {
+                await EditDataAsync();
+            }
+        }
+
+        private async Task DeleteDataAsync()
+        {
+            if (XtraMessageBox.Show("Удалить словарь " + gridView1.GetFocusedRowCellValue("Name").ToString() + "?", DAL.Data.appName,
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+            {
+                if (this.gridView1.FocusedRowHandle < 0) return;
+                rowHandle = gridView1.FocusedRowHandle - 1;
+
+                using (var dbContextTransaction = dictionaryContext.context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        int id = (int)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]);
+                        await dictionaryContext.DeleteDictionaryAsync(id);
+                        await dictionaryContext.context.SaveChangesAsync();
+                        dbContextTransaction.Commit();
+                        await BindingDataAsync();
+                    }
+                    catch (Exception)
+                    {
+                        dbContextTransaction.Rollback();
+                    }
+                }
+                gridView1.FocusedRowHandle = rowHandle;
+            }
+        }
+
+        private async void barLargeButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            await DeleteDataAsync();
+        }
+
+        private async void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            await EditDataAsync();
         }
     }
 }

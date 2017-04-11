@@ -92,6 +92,11 @@ namespace DAL.EFContext
             return await context.Template.OrderBy(t => t.Name).ToListAsync();
         }
 
+        public async Task<Template> GetTemplateByIdAsync(int templateId)
+        {
+            return await context.Template.FindAsync(templateId);
+        }
+
         //public DbSet<TemplateTable> TemplateTable
         //{
         //    get { return context.TemplateTable; }

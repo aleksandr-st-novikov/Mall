@@ -141,6 +141,7 @@
             this.barLargeButtonItem5.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem5.LargeGlyph")));
             this.barLargeButtonItem5.Name = "barLargeButtonItem5";
             this.barLargeButtonItem5.ShowCaptionOnBar = false;
+            this.barLargeButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem5_ItemClick);
             // 
             // barLargeButtonItem6
             // 
@@ -283,6 +284,7 @@
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colId
             // 
@@ -324,10 +326,13 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.KeyPreview = true;
             this.Name = "JournalDictionary";
             this.Text = "JournalDictionary";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.JournalDictionary_Activated);
             this.Load += new System.EventHandler(this.JournalDictionary_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JournalDictionary_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();

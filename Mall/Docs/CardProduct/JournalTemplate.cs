@@ -19,7 +19,7 @@ namespace Mall.Docs.CardProduct
     {
         public static string formText = "Шаблоны загрузки - Журнал";
         private int rowHandle;
-        private TemplateEFContext templateContext = null;
+        private TemplateEFContext templateContext;
 
         public JournalTemplate()
         {
@@ -41,11 +41,14 @@ namespace Mall.Docs.CardProduct
                 modalTemplateAdd.Text = "Создание шаблона";
                 modalTemplateAdd.isEdit = false;
                 result = modalTemplateAdd.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    await LoadDataAsync();
-                }
+                await ReloadEntryAsync(modalTemplateAdd.templateId);
             }
+        }
+
+        private async Task ReloadEntryAsync(int templateId)
+        {
+            Template entry = await templateContext.GetTemplateByIdAsync(templateId);
+            await templateContext.context.Entry(entry).ReloadAsync();
         }
 
         private async void JournalTemplate_Load(object sender, EventArgs e)

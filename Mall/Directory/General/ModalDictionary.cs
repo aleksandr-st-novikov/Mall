@@ -44,7 +44,6 @@ namespace Mall.Directory.General
                     case DialogResult.Yes:
                         await SaveDataAsync();
                         e.Cancel = false;
-                        //DialogResult = DialogResult.OK;
                         break;
                     case DialogResult.No:
                         e.Cancel = false;
@@ -65,7 +64,8 @@ namespace Mall.Directory.General
                     Dictionary dictionary = new Dictionary()
                     {
                         Id = dictionaryId,
-                        Name = textEdit1.Text
+                        Name = textEdit1.Text,
+                        Commentary = textEdit3.Text
                     };
                     dictionaryId = await dictionaryContext.AddDictionaryAsync(dictionary);
 
@@ -96,6 +96,7 @@ namespace Mall.Directory.General
             dictionaryContext = new DictionaryEFContext();
             await dictionaryContext.context.DictionaryTable.Where(t => t.DictionaryId == dictionaryId).LoadAsync();
             dictionaryTableBindingSource.DataSource = dictionaryContext.context.DictionaryTable.Local.ToBindingList();
+            if (isEdit) simpleButtonSave.Enabled = false;
         }
 
         private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -118,7 +119,11 @@ namespace Mall.Directory.General
         private async void simpleButtonSave_Click(object sender, EventArgs e)
         {
             await SaveDataAsync();
-            //DialogResult = DialogResult.OK;
+        }
+
+        private void textEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            simpleButtonSave.Enabled = true;
         }
     }
 }
