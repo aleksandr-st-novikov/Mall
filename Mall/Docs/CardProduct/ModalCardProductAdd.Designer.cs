@@ -289,12 +289,12 @@
         public DevExpress.XtraEditors.DateEdit dateEdit1;
         public DevExpress.XtraEditors.TextEdit textEdit1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private System.Windows.Forms.BindingSource templateBindingSource;
         private System.Windows.Forms.BindingSource documentTableBindingSource;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButtonClose;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        public DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
     }
 }

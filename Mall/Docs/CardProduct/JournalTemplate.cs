@@ -41,7 +41,10 @@ namespace Mall.Docs.CardProduct
                 modalTemplateAdd.Text = "Создание шаблона";
                 modalTemplateAdd.isEdit = false;
                 result = modalTemplateAdd.ShowDialog();
-                await ReloadEntryAsync(modalTemplateAdd.templateId);
+                if (modalTemplateAdd.templateId != -1)
+                {
+                    await ReloadEntryAsync(modalTemplateAdd.templateId);
+                }
             }
         }
 

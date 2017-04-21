@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using Mall.Directory.General;
 using Mall.Docs.CardProduct;
 using System;
@@ -34,12 +35,22 @@ namespace Mall
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (!childWindowIsOpen(JournalCardProduct.formText))
+            try
             {
-                JournalCardProduct newMDIChild = new JournalCardProduct();
-                newMDIChild.MdiParent = this;
-                newMDIChild.Text = JournalCardProduct.formText;
-                newMDIChild.Show();
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                SplashScreenManager.Default.SetWaitFormDescription("открытие журнала...");
+
+                if (!childWindowIsOpen(JournalCardProduct.formText))
+                {
+                    JournalCardProduct newMDIChild = new JournalCardProduct();
+                    newMDIChild.MdiParent = this;
+                    newMDIChild.Text = JournalCardProduct.formText;
+                    newMDIChild.Show();
+                }
+            }
+            finally
+            {
+                SplashScreenManager.CloseForm();
             }
         }
 

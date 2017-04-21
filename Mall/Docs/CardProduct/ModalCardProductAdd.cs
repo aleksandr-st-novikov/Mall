@@ -12,6 +12,7 @@ using System.Reflection;
 using DevExpress.XtraEditors;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using DevExpress.XtraSplashScreen;
 
 namespace Mall.Docs.CardProduct
 {
@@ -75,50 +76,60 @@ namespace Mall.Docs.CardProduct
         /// <param name="e"></param>
         private async void simpleButton1_Click(object sender, EventArgs e)
         {
-            DataTable dt = IO.GetFileFields(buttonEdit1.Text);
-            DocumentTable documentTable = null;
-            TemplateForDocumentView tmp = null;
-            PropertyInfo propertyInfo = null;
-            List<CellDataView> cellValues = null;
-            documentTableList = new List<DocumentTable>();
-            for (int r = 0; r <= dt.Rows.Count - 1; r++)
+            try
             {
-                if (cellValues != null) cellValues = null;
-                cellValues = new List<CellDataView>();
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                SplashScreenManager.Default.SetWaitFormDescription("импорт данных из файла...");
 
-                if (documentTable != null) documentTable = null;
-                documentTable = new DocumentTable()
+                DataTable dt = IO.GetFileFields(buttonEdit1.Text);
+                DocumentTable documentTable = null;
+                TemplateForDocumentView tmp = null;
+                PropertyInfo propertyInfo = null;
+                List<CellDataView> cellValues = null;
+                documentTableList = new List<DocumentTable>();
+                for (int r = 0; r <= dt.Rows.Count - 1; r++)
                 {
-                    DocumentId = cardProductId
-                };
-                for (int c = 0; c <= dt.Columns.Count - 1; c++)
-                {
-                    if (templateDV.FirstOrDefault(t => t.FileldIn == dt.Columns[c].ColumnName) != null)
+                    if (cellValues != null) cellValues = null;
+                    cellValues = new List<CellDataView>();
+
+                    if (documentTable != null) documentTable = null;
+                    documentTable = new DocumentTable()
                     {
-                        //сначала собираем все нужные значения по отдельным полям
-                        tmp = await SetTempValueAsync(dt, tmp, cellValues, r, c);
+                        DocumentId = cardProductId
+                    };
+                    for (int c = 0; c <= dt.Columns.Count - 1; c++)
+                    {
+                        if (templateDV.FirstOrDefault(t => t.FileldIn == dt.Columns[c].ColumnName) != null)
+                        {
+                            //сначала собираем все нужные значения по отдельным полям
+                            tmp = await SetTempValueAsync(dt, tmp, cellValues, r, c);
+                        }
+                    }
+                    propertyInfo = PopulateResultCell(documentTable, propertyInfo, cellValues);
+                    if (documentTableList.FirstOrDefault(d => d.Document == documentTable.Document
+                         && d.F001 == documentTable.F001
+                         && d.F002 == documentTable.F002
+                         && d.F003 == documentTable.F003
+                         && d.F004 == documentTable.F004
+                         && d.F005 == documentTable.F005
+                         && d.F006 == documentTable.F006
+                         && d.F007 == documentTable.F007
+                         && d.F008 == documentTable.F008
+                         && d.F009 == documentTable.F009
+                         && d.F010 == documentTable.F010) == null)
+                    {
+                        documentTableList.Add(documentTable);
                     }
                 }
-                propertyInfo = PopulateResultCell(documentTable, propertyInfo, cellValues);
-                if (documentTableList.FirstOrDefault(d => d.Document == documentTable.Document
-                     && d.F001 == documentTable.F001
-                     && d.F002 == documentTable.F002
-                     && d.F003 == documentTable.F003
-                     && d.F004 == documentTable.F004
-                     && d.F005 == documentTable.F005
-                     && d.F006 == documentTable.F006
-                     && d.F007 == documentTable.F007
-                     && d.F008 == documentTable.F008
-                     && d.F009 == documentTable.F009
-                     && d.F010 == documentTable.F010) == null)
-                {
-                    documentTableList.Add(documentTable);
-                }
-            }
 
-            documentContext.context.DocumentTable.AddRange(documentTableList);
-            if (documentTableList != null) documentTableList = null;
-            isEmpty = false;
+                documentContext.context.DocumentTable.AddRange(documentTableList);
+                if (documentTableList != null) documentTableList = null;
+                isEmpty = false;
+            }
+            finally
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
 
         /// <summary>
@@ -221,7 +232,17 @@ namespace Mall.Docs.CardProduct
         /// <param name="e"></param>
         private async void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            await SaveDataAsync();
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                SplashScreenManager.Default.SetWaitFormDescription("сохранение документа...");
+
+                await SaveDataAsync();
+            }
+            finally
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
 
         /// <summary>
@@ -309,8 +330,18 @@ namespace Mall.Docs.CardProduct
         /// <param name="e"></param>
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            documentContext.context.DocumentTable.Local.Clear();
-            simpleButtonSave.Enabled = true;
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                SplashScreenManager.Default.SetWaitFormDescription("очистка спецификации...");
+
+                documentContext.context.DocumentTable.Local.Clear();
+                simpleButtonSave.Enabled = true;
+            }
+            finally
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
 
         /// <summary>

@@ -39,7 +39,10 @@ namespace Mall.Directory.General
                 modalDictionary.dictionaryId = -1;
                 modalDictionary.isEdit = false;
                 result = modalDictionary.ShowDialog();
-                await ReloadEntryAsync(modalDictionary.dictionaryId);
+                if (modalDictionary.dictionaryId != -1)
+                {
+                    await ReloadEntryAsync(modalDictionary.dictionaryId);
+                }
             }
         }
 
