@@ -9,5 +9,6 @@ namespace DAL
     public static class Data
     {
         public const string appName = "Mall";
+        public static int appCountFields = 10;
     }
 }

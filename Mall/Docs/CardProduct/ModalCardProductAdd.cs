@@ -41,7 +41,7 @@ namespace Mall.Docs.CardProduct
         private void InitGrid(List<TemplateForDocumentView> templateDV)
         {
             gridView1.Columns["Id"].Visible = gridView1.Columns["DocumentId"].Visible = gridView1.Columns["Document"].Visible = false;
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= DAL.Data.appCountFields; i++)
             {
                 string field = "F" + i.ToString().PadLeft(3, '0');
                 var tmpl = templateDV.FirstOrDefault(t => t.FieldOut.ToUpper() == field);
@@ -314,19 +314,19 @@ namespace Mall.Docs.CardProduct
         }
 
         /// <summary>
-        /// Перевод по кнопке - не использовать
+        /// Экспорт в Excel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            foreach (var row in documentContext.context.DocumentTable.Local)
+            saveFileDialog1.Filter = "Execl files (*.xls)|*.xls";
+            saveFileDialog1.FilterIndex = 0;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string field;
-                for(int i = 1; i <= 10; i++)
-                {
-                    field = "F" + i.ToString().PadLeft(3, '0');
-                }
+                gridControl1.ExportToXls(saveFileDialog1.OpenFile());
             }
         }
 

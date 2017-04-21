@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DAL.EFContext;
 using DAL.Entities;
+using System.Data.Entity;
 
 namespace Mall.Docs.CardProduct
 {
     public partial class JournalCardProduct : DevExpress.XtraEditors.XtraForm
     {
         public static string formText = "Карточки товаров - Журнал";
+        private DocumentEFContext documentContext;
+        private TemplateEFContext templateContext;
 
         public JournalCardProduct()
         {
@@ -59,6 +62,27 @@ namespace Mall.Docs.CardProduct
                 }
             }
             return false;
+        }
+
+        private async void JournalCardProduct_Load(object sender, EventArgs e)
+        {
+            documentContext = new DocumentEFContext();
+            await documentContext.context.Document.LoadAsync();
+            documentBindingSource.DataSource = documentContext.context.Document.Local.ToBindingList();
+
+            templateContext = new TemplateEFContext();
+            await templateContext.context.Template.LoadAsync();
+            templateBindingSource.DataSource = templateContext.context.Template.Local.ToBindingList();
+        }
+
+        private async void barLargeButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            await EditDataAsync();
+        }
+
+        private Task EditDataAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

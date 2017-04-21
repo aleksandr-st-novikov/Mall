@@ -28,7 +28,7 @@ namespace Mall.Docs.CardProduct
             {
                 try
                 {
-                    await settingDocContext.PopulateFiledsAsync(10);
+                    await settingDocContext.PopulateFiledsAsync(DAL.Data.appCountFields);
                     await settingDocContext.SaveChangesAsync();
                     dbContextTransaction.Commit();
                 }

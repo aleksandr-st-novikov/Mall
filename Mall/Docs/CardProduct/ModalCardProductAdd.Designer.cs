@@ -48,6 +48,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.documentTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
@@ -141,7 +142,7 @@
             // simpleButton3
             // 
             this.simpleButton3.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(465, 58);
+            this.simpleButton3.Location = new System.Drawing.Point(488, 57);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(23, 23);
             this.simpleButton3.TabIndex = 11;
@@ -294,5 +295,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButtonClose;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

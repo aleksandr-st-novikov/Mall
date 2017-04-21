@@ -184,6 +184,7 @@
     <None Include="Properties\DataSources\DAL.Entities.Brand.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Dictionary.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.DictionaryTable.datasource" />
+    <None Include="Properties\DataSources\DAL.Entities.Document.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.DocumentTable.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.SettingDoc.datasource" />
     <None Include="Properties\DataSources\DAL.Entities.Template.datasource" />
