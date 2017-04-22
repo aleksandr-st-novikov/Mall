@@ -41,8 +41,16 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barStaticItemVersion = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -144,19 +152,79 @@
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
+            // barManager1
+            // 
+            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar3});
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barStaticItemVersion});
+            this.barManager1.MaxItemId = 1;
+            this.barManager1.StatusBar = this.bar3;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlTop, "barDockControlTop");
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlBottom, "barDockControlBottom");
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlLeft, "barDockControlLeft");
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlRight, "barDockControlRight");
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItemVersion)});
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            resources.ApplyResources(this.bar3, "bar3");
+            // 
+            // barStaticItemVersion
+            // 
+            this.barStaticItemVersion.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItemVersion.Id = 0;
+            this.barStaticItemVersion.Name = "barStaticItemVersion";
+            this.barStaticItemVersion.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
             // main
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ribbonControl1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.IsMdiContainer = true;
             this.Name = "main";
             this.Ribbon = this.ribbonControl1;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
+            this.Load += new System.EventHandler(this.main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,6 +243,13 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarStaticItem barStaticItemVersion;
     }
 }
 

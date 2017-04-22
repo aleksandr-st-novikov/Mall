@@ -115,5 +115,10 @@ namespace Mall
                 newMDIChild.Show();
             }
         }
+
+        private void main_Load(object sender, EventArgs e)
+        {
+            barStaticItemVersion.Caption = "Версия: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
     }
 }
