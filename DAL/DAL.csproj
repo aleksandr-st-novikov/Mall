@@ -54,9 +54,11 @@
     <Compile Include="Data.cs" />
     <Compile Include="EFContext\ApplicationEFContext.cs" />
     <Compile Include="EFContext\BrandEFContext.cs" />
+    <Compile Include="EFContext\DatabaseUpdate.cs" />
     <Compile Include="EFContext\DictionaryEFContext.cs" />
     <Compile Include="EFContext\DocumentEFContext.cs" />
     <Compile Include="EFContext\SettingDocEFContext.cs" />
+    <Compile Include="EFContext\SettingEFContext.cs" />
     <Compile Include="EFContext\TemplateEFContext.cs" />
     <Compile Include="Entities\Brand.cs" />
     <Compile Include="Entities\Dictionary.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Entities\Document.cs" />
     <Compile Include="Entities\DocumentTable.cs" />
     <Compile Include="Entities\MallDBContext.cs" />
+    <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\SettingDoc.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Entities\TemplateTable.cs" />

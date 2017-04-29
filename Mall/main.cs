@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DAL.EFContext;
+using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Mall.Directory.General;
 using Mall.Docs.CardProduct;
@@ -10,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Mall
 {
@@ -116,9 +118,13 @@ namespace Mall
             }
         }
 
-        private void main_Load(object sender, EventArgs e)
+        private async void main_Load(object sender, EventArgs e)
         {
-            barStaticItemVersion.Caption = "Версия: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            barStaticItemVersion.Caption = "Версия ПО: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            using (SettingEFContext settingEFContext = new SettingEFContext())
+            {
+                barStaticItemVersionDB.Caption = "БД: " + await settingEFContext.GetVersionDBAsync();
+            }
         }
     }
 }

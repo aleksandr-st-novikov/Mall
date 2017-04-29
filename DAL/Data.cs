@@ -10,5 +10,7 @@ namespace DAL
     {
         public const string appName = "Mall";
         public static int appCountFields = 10;
+
+        public const string settingVersionDBName = "Версия БД";
     }
 }

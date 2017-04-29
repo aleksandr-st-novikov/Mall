@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
+using DAL.EFContext;
+using System.Threading.Tasks;
 
 namespace Mall
 {
@@ -24,6 +26,12 @@ namespace Mall
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
+
+            using (DatabaseUpdate databaseUpdate = new DatabaseUpdate())
+            {
+                databaseUpdate.Update();
+            }
+
             Application.Run(new main());
         }
     }
