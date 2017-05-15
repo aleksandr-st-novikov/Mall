@@ -7,10 +7,11 @@ using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
+using DAL.Entities;
 
 namespace DAL.EFContext
 {
-    public class DatabaseUpdate : ApplicationEFContext
+    public class DatabaseUpdate : ApplicationEFContext<Setting>
     {
         public void Update()
         {

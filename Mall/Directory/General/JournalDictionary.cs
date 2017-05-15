@@ -69,7 +69,7 @@ namespace Mall.Directory.General
 
         private async Task ReloadEntryAsync(int dictionaryId)
         {
-            Dictionary entry = await dictionaryContext.GetDictionaryByIdAsync(dictionaryId);
+            Dictionary entry = await dictionaryContext.FindByIdAsync(dictionaryId);
             await dictionaryContext.context.Entry(entry).ReloadAsync();
         }
   
@@ -133,7 +133,7 @@ namespace Mall.Directory.General
                     try
                     {
                         int id = (int)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]);
-                        await dictionaryContext.DeleteDictionaryAsync(id);
+                        await dictionaryContext.DeleteByIdAsync(id);
                         await dictionaryContext.context.SaveChangesAsync();
                         dbContextTransaction.Commit();
                         await BindingDataAsync();

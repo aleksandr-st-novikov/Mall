@@ -261,7 +261,8 @@ namespace Mall.Docs.CardProduct
                         DateDocument = (DateTime)dateEdit1.EditValue,
                         TemplateId = (int)lookUpEdit1.EditValue
                     };
-                    cardProductId = await documentContext.SaveDocumentAsync(document);
+                    var tmp = await documentContext.AddOrUpdateAsync(document, document.Id);
+                    cardProductId = tmp == null ? -1 : tmp.Id;
 
                     if (!isEdit)
                     {
@@ -289,7 +290,7 @@ namespace Mall.Docs.CardProduct
         private async void ModalCardProductAdd_Load(object sender, EventArgs e)
         {
             dictionaryContext = new DictionaryEFContext();
-            templateBindingSource.DataSource = await templateContext.GetListTemplateAsync();
+            templateBindingSource.DataSource = (await templateContext.GetAllAsync()).OrderBy(t => t.Name);
 
             await documentContext.context.DocumentTable.Where(t => t.DocumentId == cardProductId).LoadAsync();
             gridControl1.DataSource = documentContext.context.DocumentTable.Local.ToBindingList();

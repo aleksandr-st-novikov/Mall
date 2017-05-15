@@ -9,26 +9,9 @@ using System.Threading.Tasks;
 
 namespace DAL.EFContext
 {
-    public class DictionaryEFContext : ApplicationEFContext
+    public class DictionaryEFContext : ApplicationEFContext<Dictionary>
     {
-        public async Task<int> AddDictionaryAsync(Dictionary dictionary)
-        {
-            Dictionary entry = await context.Dictionary.FirstOrDefaultAsync(t => t.Id == dictionary.Id);
-            if (entry != null)
-            {
-                entry.BrandId = dictionary.BrandId;
-                entry.Commentary = dictionary.Commentary;
-                entry.Name = dictionary.Name;
-            }
-            else
-            {
-                context.Dictionary.Add(dictionary);
-            }
-            await context.SaveChangesAsync();
-            return dictionary.Id;
-        }
-
-        public async Task DeleteDictionaryAsync(int dictionaryId)
+        public override async Task DeleteByIdAsync(int dictionaryId)
         {
             Dictionary entry = await context.Dictionary.FindAsync(dictionaryId);
             if (entry != null)
@@ -40,11 +23,6 @@ namespace DAL.EFContext
             {
                 context.DictionaryTable.RemoveRange(toDelete);
             }
-        }
-
-        public async Task<Dictionary> GetDictionaryByIdAsync(int dictionaryId)
-        {
-            return await context.Dictionary.FindAsync(dictionaryId);
         }
 
         public async Task<string> GetTranslateAsync(string original, int dictionaryId)

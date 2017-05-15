@@ -149,7 +149,7 @@ namespace Mall.Docs.CardProduct
                         SplashScreenManager.Default.SetWaitFormDescription("удаление документа...");
 
                         int id = (int)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]);
-                        await documentContext.DeleteDocumentAsync(id);
+                        await documentContext.DeleteByIdAsync(id);
                         await documentContext.context.SaveChangesAsync();
                         dbContextTransaction.Commit();
                     }

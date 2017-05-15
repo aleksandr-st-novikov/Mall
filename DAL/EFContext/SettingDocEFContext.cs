@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.EFContext
 {
-    public class SettingDocEFContext : ApplicationEFContext
+    public class SettingDocEFContext : ApplicationEFContext<SettingDoc>
     {
         public async Task PopulateFiledsAsync(int count)
         {

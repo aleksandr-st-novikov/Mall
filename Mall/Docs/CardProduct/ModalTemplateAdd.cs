@@ -78,7 +78,8 @@ namespace Mall.Docs.CardProduct
                         Name = textEdit1.Text,
                         Commentary = textEdit3.Text
                     };
-                    templateId = await templateContext.SaveTemplateAsync(template);
+                    var tmp = await templateContext.AddOrUpdateAsync(template, template.Id);
+                    templateId = tmp == null ? -1 : tmp.Id;
 
                     if (!isEdit)
                     {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.EFContext
 {
-    public class SettingEFContext : ApplicationEFContext
+    public class SettingEFContext : ApplicationEFContext<Setting>
     {
         public string SetVersionDB(string version)
         {

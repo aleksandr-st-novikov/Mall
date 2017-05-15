@@ -67,7 +67,8 @@ namespace Mall.Directory.General
                         Name = textEdit1.Text,
                         Commentary = textEdit3.Text
                     };
-                    dictionaryId = await dictionaryContext.AddDictionaryAsync(dictionary);
+                    var tmp = await dictionaryContext.AddOrUpdateAsync(dictionary, dictionary.Id);
+                    dictionaryId = tmp == null ? -1 : tmp.Id;
 
                     if (!isEdit)
                     {

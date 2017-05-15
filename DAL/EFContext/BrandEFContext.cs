@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace DAL.EFContext
 {
-    public class BrandEFContext : ApplicationEFContext
+    public class BrandEFContext : ApplicationEFContext<Brand>
     {
-        public async Task AddBrandAsync(Brand brand)
-        {
-            Brand entry = await context.Brand.FirstOrDefaultAsync(t => t.Id == brand.Id);
-            if (entry != null)
-            {
-                entry.Name = brand.Name;
-            }
-            else
-            {
-                context.Brand.Add(brand);
-            }
-        }
+        //public async Task AddBrandAsync(Brand brand)
+        //{
+        //    Brand entry = await context.Brand.FirstOrDefaultAsync(t => t.Id == brand.Id);
+        //    if (entry != null)
+        //    {
+        //        entry.Name = brand.Name;
+        //    }
+        //    else
+        //    {
+        //        context.Brand.Add(brand);
+        //    }
+        //}
 
     }
 }

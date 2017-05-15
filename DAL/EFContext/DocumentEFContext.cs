@@ -8,25 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL.EFContext
 {
-    public class DocumentEFContext : ApplicationEFContext
+    public class DocumentEFContext : ApplicationEFContext<Document>
     {
-        public async Task<int> SaveDocumentAsync(Document document)
-        {
-            Document entry = await context.Document.FirstOrDefaultAsync(t => t.Id == document.Id);
-            if (entry != null)
-            {
-                entry.DateDocument = document.DateDocument;
-            }
-            else
-            {
-                context.Document.Add(document);
-            }
-            await context.SaveChangesAsync();
-
-            return document.Id;
-        }
-
-        public async Task DeleteDocumentAsync(int documentId)
+        public override async Task DeleteByIdAsync(int documentId)
         {
             Document entry = await context.Document.FindAsync(documentId);
             if (entry != null)

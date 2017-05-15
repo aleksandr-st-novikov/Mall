@@ -50,7 +50,7 @@ namespace Mall.Docs.CardProduct
 
         private async Task ReloadEntryAsync(int templateId)
         {
-            Template entry = await templateContext.GetTemplateByIdAsync(templateId);
+            Template entry = await templateContext.FindByIdAsync(templateId);
             await templateContext.context.Entry(entry).ReloadAsync();
         }
 
@@ -150,7 +150,7 @@ namespace Mall.Docs.CardProduct
                     try
                     {
                         int id = (int)this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Id"]);
-                        await templateContext.DeleteTemplateAsync(id);
+                        await templateContext.DeleteByIdAsync(id);
                         await templateContext.context.SaveChangesAsync();
                         dbContextTransaction.Commit();
                         await LoadDataAsync();
