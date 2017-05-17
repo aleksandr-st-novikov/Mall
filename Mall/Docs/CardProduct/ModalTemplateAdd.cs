@@ -90,13 +90,17 @@ namespace Mall.Docs.CardProduct
                     }
                     await templateContext.context.SaveChangesAsync();
                     dbContextTransaction.Commit();
+
+                    //интерфейс
+                    textEdit2.Text = templateId.ToString();
+                    isEdit = true;
+                    simpleButtonSave.Enabled = false;
                 }
                 catch (Exception)
                 {
                     dbContextTransaction.Rollback();
                 }
             }
-            simpleButtonSave.Enabled = false;
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -152,5 +156,22 @@ namespace Mall.Docs.CardProduct
                 }
             }
         }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                switch (XtraMessageBox.Show("Удалить запись?", DAL.Data.appName, MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        this.gridView1.DeleteSelectedRows();
+                        simpleButtonSave.Enabled = true;
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
+        }
+
     }
 }

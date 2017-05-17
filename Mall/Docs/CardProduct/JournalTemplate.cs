@@ -56,15 +56,15 @@ namespace Mall.Docs.CardProduct
 
         private async void JournalTemplate_Load(object sender, EventArgs e)
         {
-            //templateContext = new TemplateEFContext();
-            await LoadDataAsync();
+            await BindingDataAsync();
         }
 
-        private async Task LoadDataAsync()
+        private async Task BindingDataAsync()
         {
             if (templateContext != null) templateContext.Dispose();
             templateContext = new TemplateEFContext();
-            gridControl1.DataSource = await templateContext.context.Template.OrderBy(t => t.Name).ToListAsync();
+            await templateContext.context.Template.OrderBy(d => d.Name).LoadAsync();
+            gridControl1.DataSource = templateContext.context.Template.Local.ToBindingList();
         }
 
         private async void barLargeButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -86,13 +86,6 @@ namespace Mall.Docs.CardProduct
                 modalTemplateAdd.textEdit3.Text = this.gridView1.GetFocusedRowCellValue(this.gridView1.Columns["Commentary"]).ToString();
                 result = modalTemplateAdd.ShowDialog();
                 await ReloadEntryAsync(modalTemplateAdd.templateId);
-                //if (result == DialogResult.OK)
-                //{
-                //    if (templateContext != null) templateContext.Dispose();
-                //    templateContext = new TemplateEFContext();
-                //    await LoadDataAsync();
-                //    //templateContext.Dispose();
-                //}
             }
             this.gridView1.FocusedRowHandle = rowHandle;
         }
@@ -104,7 +97,7 @@ namespace Mall.Docs.CardProduct
 
         private async void barLargeButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            await LoadDataAsync();
+            await BindingDataAsync();
         }
 
         private async void JournalTemplate_KeyDown(object sender, KeyEventArgs e)
@@ -121,7 +114,7 @@ namespace Mall.Docs.CardProduct
 
         private async void JournalTemplate_Activated(object sender, EventArgs e)
         {
-            await LoadDataAsync();
+            await BindingDataAsync();
             if (rowHandle != 0)
             {
                 this.gridView1.FocusedRowHandle = rowHandle;
@@ -153,7 +146,7 @@ namespace Mall.Docs.CardProduct
                         await templateContext.DeleteByIdAsync(id);
                         await templateContext.context.SaveChangesAsync();
                         dbContextTransaction.Commit();
-                        await LoadDataAsync();
+                        await BindingDataAsync();
                     }
                     catch (Exception)
                     {
